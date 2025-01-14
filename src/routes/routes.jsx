@@ -4,6 +4,10 @@ import {
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/HomePage/Home";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
+import Membership from "../pages/Membership";
+import Notifications from "../pages/Notifications";
+import JoinUs from "../pages/JoinUs";
 
 export const router = createBrowserRouter([
     {
@@ -17,6 +21,22 @@ export const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
+            },
+            {
+                path: '/membership',
+                element: <Membership></Membership>
+            },
+            {
+                path: '/notifications',
+                element: <Notifications></Notifications>
+            },
+            {
+                path: '/joinUs',
+                element: <JoinUs></JoinUs>
             }
         ]
     },
