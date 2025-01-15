@@ -1,12 +1,52 @@
-import React from 'react';
-import { useContext } from 'react';
-import { AuthContext } from '../../providers/AuthProvider';
+import React, { useState, useContext } from 'react';
 import { BiDownvote, BiSolidUpvote } from 'react-icons/bi';
 import { FaRegCommentDots, FaShare } from 'react-icons/fa';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import usePost from '../../hooks/usePost';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Post = ({ post }) => {
-    const { authorImage, postTitle, postImg, tag, createdAt, postDescription } = post;
-    const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext); // Access user email
+    const [isUpvoted, setIsUpvoted] = useState(false);
+    const [isDownvoted, setIsDownvoted] = useState(false);
+    const [localUpVote, setLocalUpVote] = useState(post.upVote);
+    const [localDownVote, setLocalDownVote] = useState(post.downVote);
+
+    const { authorImage, postTitle, postImg, tag, createdAt, postDescription, _id } = post;
+    const axiosPublic = useAxiosPublic();
+    const [, , refetch] = usePost();
+
+    const handleUpvote = async () => {
+        if (!user?.email) return alert('Please log in to upvote.');
+        try {
+            const res = await axiosPublic.patch(`/post/${_id}/upvote`, {
+                email: user.email,
+            });
+            if (res.data.modifiedCount) {
+                setLocalUpVote((prev) => prev + 1);
+                setIsUpvoted(true);
+                refetch();
+            }
+        } catch (error) {
+            console.error('Upvote error:', error.response?.data?.error || error.message);
+        }
+    };
+
+    const handleDownvote = async () => {
+        if (!user?.email) return alert('Please log in to downvote.');
+        try {
+            const res = await axiosPublic.patch(`/post/${_id}/downvote`, {
+                email: user.email,
+            });
+            if (res.data.modifiedCount) {
+                setLocalDownVote((prev) => prev + 1);
+                setIsDownvoted(true);
+                refetch();
+            }
+        } catch (error) {
+            console.error('Downvote error:', error.response?.data?.error || error.message);
+        }
+    };
 
     return (
         <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
@@ -29,20 +69,13 @@ const Post = ({ post }) => {
             </div>
 
             {/* Post Details */}
-            {
-                postDescription ? (
-                    <p className='text-sm md:text-md mt-3'>
-                        {postDescription.length > 230
-                            ? `${postDescription.substring(0, 230)}...`
-                            : postDescription
-                        }
-                    </p>
-                ) : (
-                    <p className='text-sm md:text-md mt-3 text-gray-500'>
-                        No description available.
-                    </p>
-                )
-            }
+            {postDescription && (
+                <p className="text-sm md:text-md mt-3">
+                    {postDescription.length > 230
+                        ? `${postDescription.substring(0, 230)}...`
+                        : postDescription}
+                </p>
+            )}
 
             {/* Post Image Section */}
             {postImg && (
@@ -55,22 +88,28 @@ const Post = ({ post }) => {
                 </div>
             )}
 
-
-
             {/* Interaction Section */}
             <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <button
-                        className="flex items-center gap-1 text-green-600 hover:bg-green-100 px-3 py-1 rounded-lg"
+                        onClick={handleUpvote}
+                        disabled={isUpvoted}
+                        className={`${
+                            isUpvoted ? 'btn-disabled' : 'btn-primary'
+                        } flex items-center gap-1 text-green-600 hover:bg-green-100 px-3 py-1 rounded-lg`}
                     >
+                        <span>{localUpVote} Upvote</span>
                         <BiSolidUpvote size={20} />
-                        <span>Upvote</span>
                     </button>
                     <button
-                        className="flex items-center gap-1 text-red-600 hover:bg-red-100 px-3 py-1 rounded-lg"
+                        onClick={handleDownvote}
+                        disabled={isDownvoted}
+                        className={`${
+                            isDownvoted ? 'btn-disabled' : 'btn-primary'
+                        } flex items-center gap-1 text-red-600 hover:bg-red-100 px-3 py-1 rounded-lg`}
                     >
                         <BiDownvote size={20} />
-                        <span>Downvote</span>
+                        <span>{localDownVote} Downvote</span>
                     </button>
                 </div>
                 <div className="flex items-center gap-4">

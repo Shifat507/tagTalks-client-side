@@ -7,6 +7,7 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { IoMdPhotos } from 'react-icons/io';
+import usePost from '../../hooks/usePost';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -14,6 +15,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const CreatePost = () => {
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
+    const [, , refetch] = usePost();
 
     const { user } = useContext(AuthContext);
     const authorName = user?.displayName;
@@ -21,6 +23,12 @@ const CreatePost = () => {
     const authorImage = user?.photoURL;
     const upVote = 0;
     const downVote = 0;
+
+    const userInfo = {
+        authorName,
+        email,
+        authorImage
+    }
 
     const {
         register,
@@ -42,6 +50,7 @@ const CreatePost = () => {
                         'Content-Type': 'multipart/form-data',
                     },
                 });
+                
 
                 console.log(res.data);
 
@@ -73,11 +82,15 @@ const CreatePost = () => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
+                refetch();
                 navigate('/');
                 reset();
             } else {
                 throw new Error('Post creation failed');
             }
+
+            // send user data to DB:
+            const userRes = await axiosPublic.post('/users',userInfo);
         } catch (error) {
             Swal.fire({
                 icon: 'error',
