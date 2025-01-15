@@ -5,7 +5,7 @@ import { BiDownvote, BiSolidUpvote } from 'react-icons/bi';
 import { FaRegCommentDots, FaShare } from 'react-icons/fa';
 
 const Post = ({ post }) => {
-    const { authorImage, postTitle, postImage, tag, createdAt, postDescription } = post;
+    const { authorImage, postTitle, postImg, tag, createdAt, postDescription } = post;
     const { user } = useContext(AuthContext);
 
     return (
@@ -45,10 +45,10 @@ const Post = ({ post }) => {
             }
 
             {/* Post Image Section */}
-            {postImage && (
+            {postImg && (
                 <div className="mt-4">
                     <img
-                        src={postImage}
+                        src={postImg}
                         alt="Post"
                         className="w-full h-auto rounded-lg shadow-sm"
                     />
