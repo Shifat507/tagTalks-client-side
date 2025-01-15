@@ -4,6 +4,7 @@ import logo from '../assets/logos/tagTalksLogo.png'
 import { FaRegNewspaper } from 'react-icons/fa';
 import { FaPenToSquare } from 'react-icons/fa6';
 import { IoMdHelpCircleOutline } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 const Banner = () => {
     const { user } = useContext(AuthContext);
     return (
@@ -17,7 +18,9 @@ const Banner = () => {
                     </div>
                 </div>
                 <label className="input input-bordered flex items-center gap-2 w-full">
-                    <input type="text" className="grow" placeholder={`Whats on your mind, ${user?.displayName}?`} />
+                    {
+                        user ? <input type="text" className="grow" placeholder={`What conversation are you looking for today, ${user?.displayName}?`} /> : <input type="text" className="grow" placeholder={`What conversation are you looking for today?`} />
+                    }
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"
@@ -30,11 +33,13 @@ const Banner = () => {
                     </svg>
                 </label>
             </div>
-         
+
             <div className='grid grid-cols-3 px-4 py-1 gap-3 border-2 border-base-200 rounded-lg mt-2'>
-                <button className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaRegNewspaper size={25}/> Top News</button>
-                <button className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaPenToSquare size={25}/> Post</button>
-                <button className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><IoMdHelpCircleOutline size={25}/> Help</button>
+                <button className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaRegNewspaper size={25} /> Top News</button>
+
+                <Link to='/createPost' className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaPenToSquare size={25} /> Post</Link>
+
+                <button className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><IoMdHelpCircleOutline size={25} /> Help</button>
             </div>
         </div>
     );

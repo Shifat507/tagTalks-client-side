@@ -8,6 +8,7 @@ import Register from "../pages/Register";
 import Membership from "../pages/Membership";
 import Notifications from "../pages/Notifications";
 import JoinUs from "../pages/JoinUs";
+import CreatePost from "../pages/HomePage/CreatePost";
 
 export const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
             {
                 path: '/joinUs',
                 element: <JoinUs></JoinUs>
+            },
+            {
+                path: '/createPost',
+                element: <CreatePost></CreatePost>
             }
         ]
     },

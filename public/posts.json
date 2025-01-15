@@ -1,0 +1,65 @@
+[
+    {
+        "authorImage": "https://example.com/images/author1.jpg",
+        "authorName": "John Doe",
+        "postTitle": "The Future of Technology",
+        
+        "postDescription": "Exploring the advancements in AI, robotics, and quantum computing that are shaping the future.Exploring the advancements in AI, robotics, and quantum computing that are shaping the future.Exploring the advancements in AI, robotics, and quantum computing that are shaping the future.Exploring the advancements in AI, robotics, and quantum computing that are shaping the future.",
+        "tag": "Technology",
+        "postTime": "2025-01-15T10:30:00Z"
+    },
+    {
+        "authorImage": "https://example.com/images/author2.jpg",
+        "authorName": "Jane Smith",
+        "postTitle": "The Science Behind Climate Change",
+        
+        "postDescription": "A deep dive into the evidence and implications of global warming.",
+        "tag": "Science",
+        "postTime": "2025-01-14T14:15:00Z"
+    },
+    {
+        "authorImage": "https://example.com/images/author3.jpg",
+        "authorName": "Alice Johnson",
+        "postTitle": "Revolutionizing Education",
+        "postImage" : "https://i.ibb.co.com/99jrFyf/education-Photoroom.jpg",
+        "postDescription": "How technology and new teaching methods are transforming classrooms worldwide.",
+        "tag": "Education",
+        "postTime": "2025-01-13T09:00:00Z"
+    },
+    {
+        "authorImage": "https://example.com/images/author4.jpg",
+        "authorName": "Michael Brown",
+        "postTitle": "The Politics of Today",
+        "postImage" : "",
+        "postDescription": "An analysis of recent political trends and their impact on global stability.",
+       
+        "postTime": "2025-01-12T16:45:00Z"
+    },
+    {
+        "authorImage": "https://example.com/images/author5.jpg",
+        "authorName": "Emily Davis",
+        "postTitle": "The Evolution of Sports",
+        "postImage" : "https://i.ibb.co.com/YpKV9by/sports-Photoroom.jpg",
+        "postDescription": "From traditional games to e-sports, how the sports world is evolving.",
+        "tag": "Sports",
+        "postTime": "2025-01-11T11:20:00Z"
+    },
+    {
+        "authorImage": "https://example.com/images/author6.jpg",
+        "authorName": "Chris Evans",
+        "postTitle": "Health Trends for 2025",
+        "postImage" : "https://i.ibb.co.com/gSGt9wP/health-Photoroom.jpg",
+        "postDescription": "Discover the latest health trends and tips for maintaining well-being.",
+        "tag": "Health",
+        "postTime": "2025-01-10T08:40:00Z"
+    },
+    {
+        "authorImage": "https://example.com/images/author7.jpg",
+        "authorName": "Sophia Williams",
+        "postTitle": "Lifestyle Hacks for Modern Living",
+        "postImage" : "",
+        "postDescription": "Creative tips to simplify and enhance your everyday life.",
+        "tag": "Lifestyle",
+        "postTime": "2025-01-09T19:30:00Z"
+    }
+]
