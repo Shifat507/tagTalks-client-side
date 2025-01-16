@@ -35,7 +35,7 @@ const Banner = () => {
             </div>
 
             <div className='grid grid-cols-3 px-4 py-1 gap-3 border-2 border-base-200 rounded-lg mt-2'>
-                <button className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaRegNewspaper size={25} /> Top News</button>
+                <Link to='/popular-post' className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaRegNewspaper size={25} /> Popular Contents</Link>
 
                 <Link to='/createPost' className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaPenToSquare size={25} /> Post</Link>
 

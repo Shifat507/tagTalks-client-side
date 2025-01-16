@@ -9,6 +9,7 @@ import Membership from "../pages/Membership";
 import Notifications from "../pages/Notifications";
 import JoinUs from "../pages/JoinUs";
 import CreatePost from "../pages/HomePage/CreatePost";
+import PopularPost from "../pages/HomePage/PopularPost";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
             {
                 path: '/createPost',
                 element: <CreatePost></CreatePost>
+            },
+            {
+                path: '/popular-post',
+                element: <PopularPost></PopularPost>
             }
         ]
     },
