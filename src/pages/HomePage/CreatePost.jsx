@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CgDetailsMore } from 'react-icons/cg';
 import { FaTags, FaPenAlt } from 'react-icons/fa';
@@ -8,11 +8,14 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { IoMdPhotos } from 'react-icons/io';
 import usePost from '../../hooks/usePost';
+import Membership from '../Membership';
+import usePostCount from '../../hooks/usePostCount';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const CreatePost = () => {
+    const { postCount } = usePostCount();
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
     const [, , refetch] = usePost();
@@ -24,11 +27,17 @@ const CreatePost = () => {
     const upVote = 0;
     const downVote = 0;
 
-    const userInfo = {
-        authorName,
-        email,
-        authorImage
+    const [userBadge, setUserBadge] = useState('');
+
+    const checkUserBadge = async () => {
+        const badgeRes = await axiosPublic.get(`/user/${email}`)
+        setUserBadge(badgeRes.data[0].userBadge);
     }
+    checkUserBadge();
+    console.log(userBadge);
+
+    // const [postCount, setPostCount] = useState(null); // Initial state set to null
+    const [loading, setLoading] = useState(true); // Loading state to handle async data fetching
 
     const {
         register,
@@ -37,29 +46,68 @@ const CreatePost = () => {
         reset,
     } = useForm();
 
+    // Fetch post count using useEffect
+    // useEffect(() => {
+    //     const fetchPostCount = async () => {
+    //         try {
+    //             const response = await axiosPublic.get(`/post/user/count/${email}`);
+    //             const responseCount = response.data.count
+    //             setPostCount(responseCount); // Set post count data
+    //         } catch (error) {
+    //             console.error('Error fetching post count:', error);
+    //         } finally {
+    //             setLoading(false); // Stop loading after fetching
+    //         }
+    //     };
+
+    //     if (email) {
+    //         fetchPostCount();
+    //     }
+    // }, [email, axiosPublic]);
+    // console.log(postCount);
+
+    // Conditional logic based on post count
+    if (postCount > 5 && userBadge === 'Bronze') {
+        console.log('Post korsy 5 ta ba tar beshi');
+        Swal.fire({
+            title: "Please Upgrade Your Plane",
+            text: "Your post limit is exceeds",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Become A Member"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                navigate('/membership');
+            } else {
+                navigate('/');
+            }
+          });
+        
+    } else {
+        console.log('5 tar kom e korsy');
+
+    }
+
     const onSubmit = async (formData) => {
         try {
-            // Image upload
             let imageUrl = null;
             if (formData.postImg[0]) {
                 const imageData = new FormData();
                 imageData.append('image', formData.postImg[0]);
 
-                const res = await axiosPublic.post(image_hosting_api, imageData, {
+                const response = await axiosPublic.post(image_hosting_api, imageData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
                 });
-                
 
-                console.log(res.data);
-
-                if (res.data.success) {
-                    imageUrl = res.data.data.display_url;
-                } 
+                if (response.data.success) {
+                    imageUrl = response.data.data.display_url;
+                }
             }
 
-            // Create post data
             const postData = {
                 ...formData,
                 authorName,
@@ -70,11 +118,8 @@ const CreatePost = () => {
                 postImg: imageUrl || null,
             };
 
-            console.log(postData);
-
-            // Send post data to API
-            const postRes = await axiosPublic.post('/post', postData);
-            if (postRes.data.insertedId) {
+            const postResponse = await axiosPublic.post('/post', postData);
+            if (postResponse.data.insertedId) {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -88,9 +133,6 @@ const CreatePost = () => {
             } else {
                 throw new Error('Post creation failed');
             }
-
-            // send user data to DB:
-            const userRes = await axiosPublic.post('/users',userInfo);
         } catch (error) {
             Swal.fire({
                 icon: 'error',
@@ -100,11 +142,15 @@ const CreatePost = () => {
         }
     };
 
+    // Loading state check
+    // if (loading) {
+    //     return <div>Loading...</div>;
+    // }
+
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
             <h2 className="text-2xl font-semibold text-center mb-6">Create a New Post</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                {/* Post Title */}
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text font-medium flex items-center">
@@ -122,7 +168,6 @@ const CreatePost = () => {
                     )}
                 </div>
 
-                {/* Post Description */}
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text font-medium flex items-center">
@@ -147,7 +192,6 @@ const CreatePost = () => {
                     )}
                 </div>
 
-                {/* Tags */}
                 <div className="form-control w-full">
                     <label className="label">
                         <span className="label-text font-medium flex items-center">
@@ -172,7 +216,6 @@ const CreatePost = () => {
                     )}
                 </div>
 
-                {/* Photo */}
                 <div>
                     <label className="label">
                         <span className="label-text font-medium flex items-center">
@@ -186,7 +229,6 @@ const CreatePost = () => {
                     />
                 </div>
 
-                {/* Submit Button */}
                 <div className="form-control mt-4">
                     <button type="submit" className="btn btn-primary w-full">
                         Create Post

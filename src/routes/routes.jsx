@@ -10,6 +10,7 @@ import Notifications from "../pages/Notifications";
 import JoinUs from "../pages/JoinUs";
 import CreatePost from "../pages/HomePage/CreatePost";
 import PopularPost from "../pages/HomePage/PopularPost";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/membership',
-                element: <Membership></Membership>
+                element: <PrivateRoute><Membership></Membership></PrivateRoute>
             },
             {
                 path: '/notifications',
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/createPost',
-                element: <CreatePost></CreatePost>
+                element: <PrivateRoute><CreatePost></CreatePost></PrivateRoute>
             },
             {
                 path: '/popular-post',

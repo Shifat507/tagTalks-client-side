@@ -5,9 +5,11 @@ import { AuthContext } from '../providers/AuthProvider';
 // import { Helmet } from 'react-helmet-async';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import { FcGoogle } from 'react-icons/fc';
+import usePostCount from '../hooks/usePostCount';
 
 const Register = () => {
     const axiosPublic = useAxiosPublic();
+    const { postCount } = usePostCount();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { createUser, userUpdateData, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -16,7 +18,10 @@ const Register = () => {
             .then(res => {
                 const userInfo = {
                     email: res.user?.email,
-                    name: res.user?.displayName
+                    name: res.user?.displayName,
+                    userBadge: 'Bronze',
+                    postCount
+
                 }
                 //send user data to DB
                 axiosPublic.post('/users', userInfo)
@@ -39,8 +44,14 @@ const Register = () => {
                         // create user entry in DB
                         const userInfo = {
                             name: data.name,
-                            email: data.email
+                            email: data.email,
+                            userBadge: 'Bronze',
+                            postCount
+
                         }
+                        //send user data to DB
+                        axiosPublic.post('/users', userInfo)
+                        navigate('/');
                         // axiosPublic.post('/users', userInfo)
                         //     .then(res => {
                         //         if (res.data.insertedId) {
@@ -58,7 +69,7 @@ const Register = () => {
             .catch(error => {
 
                 console.error(error);
-                alert("Error: ",  error.message);
+                alert("Error: ", error.message);
             });
 
     };

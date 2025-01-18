@@ -18,7 +18,7 @@ const Post = ({ post }) => {
     const { authorImage, postTitle, postImg, tag, createdAt, postDescription, _id } = post;
     const axiosPublic = useAxiosPublic();
     const [, , refetch] = usePost();
-    console.log(comment);
+    // console.log(comment);
 
     const openModal = (id) => {
         setModalTitle(postTitle);
@@ -65,6 +65,10 @@ const Post = ({ post }) => {
     }
 
     const handleComment = async () => {
+        if(comment === ''){
+            return;
+        }
+
         const commentRes = await axiosPublic.post('/comments', commentInfo)
         console.log(commentRes.data);
         setComment('')
