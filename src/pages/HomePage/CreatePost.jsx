@@ -71,7 +71,7 @@ const CreatePost = () => {
         console.log('Post korsy 5 ta ba tar beshi');
         Swal.fire({
             title: "Please Upgrade Your Plane",
-            text: "Your post limit is exceeds",
+            text: "Your post limit is exceeds. Get unlimited post limit for lifetime at only $59",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
