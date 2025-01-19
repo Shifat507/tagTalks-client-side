@@ -94,7 +94,7 @@ const Navbar = () => {
                                     {/* Sidebar content here */}
                                     <li><Link to='/userProfile'>My Profile</Link></li>
                                     <li><Link to='/createPost'>Add Post</Link></li>
-                                    <li><Link to='/myPost'>My Posts</Link></li>
+                                    <li><Link to='/myPosts'>My Posts</Link></li>
                                 </ul>
                             </div>
                         </div>

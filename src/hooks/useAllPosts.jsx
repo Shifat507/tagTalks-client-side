@@ -1,0 +1,20 @@
+import React, { useContext } from 'react';
+import useAxiosPublic from './useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
+import { AuthContext } from '../providers/AuthProvider';
+const useAllPosts = () => {
+
+    const axiosPublic = useAxiosPublic();
+    const {user} = useContext(AuthContext);
+
+    const {data : posts=[], isPaused: loading, refetch} = useQuery({
+        queryKey: ['posts'],
+        queryFn: async()=>{
+            const res = await axiosPublic.get(`/posts/user/${user?.email}`);
+            return res.data;
+        }
+    })
+    return [posts, loading, refetch]
+};
+
+export default useAllPosts;

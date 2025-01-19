@@ -12,6 +12,7 @@ import CreatePost from "../pages/HomePage/CreatePost";
 import PopularPost from "../pages/HomePage/PopularPost";
 import PrivateRoute from "./PrivateRoute";
 import UserProfile from "../pages/userProfile";
+import MyPosts from "../pages/MyPosts";
 
 export const router = createBrowserRouter([
     {
@@ -52,7 +53,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/userProfile',
-                element: <UserProfile></UserProfile>
+                element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
+            },
+            {
+                path: '/myPosts',
+                element: <PrivateRoute><MyPosts></MyPosts></PrivateRoute>
             }
         ]
     },
