@@ -10,6 +10,7 @@ import { IoMdPhotos } from 'react-icons/io';
 import usePost from '../../hooks/usePost';
 import Membership from '../Membership';
 import usePostCount from '../../hooks/usePostCount';
+import axios from 'axios';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -77,14 +78,15 @@ const CreatePost = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Become A Member"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 navigate('/membership');
             } else {
                 navigate('/');
             }
-          });
-        
+        });
+
+
     } else {
         console.log('5 tar kom e korsy');
 

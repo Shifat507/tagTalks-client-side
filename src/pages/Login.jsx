@@ -2,8 +2,11 @@ import React, { useContext } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
+import useAxiosPublic from '../hooks/useAxiosPublic';
 
 const Login = () => {
+    const user = useContext(AuthContext);
+    const axiosPublic = useAxiosPublic();
     const { signIn, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const fromPath = '/'; // Default path after login if none is specified.
@@ -16,7 +19,7 @@ const Login = () => {
 
         signIn(email, password)
             .then((result) => {
-                console.log(result.user);
+                // console.log(result.user);
                 navigate(fromPath, { replace: true });
             })
             .catch((error) => {
@@ -27,14 +30,22 @@ const Login = () => {
 
     const handleGoogleSignin = () => {
         googleSignIn()
-            .then((res) => {
+            .then(res => {
+                console.log(res);
+                const userInfo = {
+                    email: res.user?.email,
+                    name: res.user?.displayName,
+                    userBadge: 'Bronze'
+
+                }
+                //send user data to DB
+                axiosPublic.post('/users', userInfo)
+                    .then(() => {
+                        navigate('/');
+                    });
                 console.log(res.user);
-                navigate('/');
+                navigate('/')
             })
-            .catch((error) => {
-                console.error('Google Sign-In failed:', error);
-                alert('Google Sign-In failed. Please try again.');
-            });
     };
 
     return (

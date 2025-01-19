@@ -16,6 +16,7 @@ const Register = () => {
     const handleGoogleSignin = () => {
         googleSignIn()
             .then(res => {
+                // console.log(res);
                 const userInfo = {
                     email: res.user?.email,
                     name: res.user?.displayName,
@@ -25,10 +26,9 @@ const Register = () => {
                 }
                 //send user data to DB
                 axiosPublic.post('/users', userInfo)
-                    .then(res => {
-
-                        navigate('/')
-                    })
+                    .then(() => {
+                        navigate('/');
+                    });
                 console.log(res.user);
                 navigate('/')
             })
