@@ -11,6 +11,7 @@ import JoinUs from "../pages/JoinUs";
 import CreatePost from "../pages/HomePage/CreatePost";
 import PopularPost from "../pages/HomePage/PopularPost";
 import PrivateRoute from "./PrivateRoute";
+import UserProfile from "../pages/userProfile";
 
 export const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 path: '/popular-post',
                 element: <PopularPost></PopularPost>
+            },
+            {
+                path: '/userProfile',
+                element: <UserProfile></UserProfile>
             }
         ]
     },

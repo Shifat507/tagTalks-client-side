@@ -92,8 +92,8 @@ const Navbar = () => {
                                 <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
                                 <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                                     {/* Sidebar content here */}
-                                    <li><Link to='/profile'>My Profile</Link></li>
-                                    <li><Link to='/addPost'>Add Post</Link></li>
+                                    <li><Link to='/userProfile'>My Profile</Link></li>
+                                    <li><Link to='/createPost'>Add Post</Link></li>
                                     <li><Link to='/myPost'>My Posts</Link></li>
                                 </ul>
                             </div>
