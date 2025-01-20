@@ -10,7 +10,7 @@ const Banner = () => {
     return (
         <div className=''>
             <div className='flex items-center gap-5'>
-                <div className="avatar online">
+                <div className="avatar online hidden md:block">
                     <div className="w-12 rounded-full">
                         {
                             user ? <img src={user?.profileURL} /> : <img src={logo} />
@@ -35,11 +35,15 @@ const Banner = () => {
             </div>
 
             <div className='grid grid-cols-3 px-4 py-1 gap-3 border-2 border-base-200 rounded-lg mt-2'>
-                <Link to='/popular-post' className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaRegNewspaper size={25} /> Popular Contents</Link>
+                <Link to='/popular-post' className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md">
+                <FaRegNewspaper size={20}/>
+                 <span className='hidden md:block'>Popular Contents</span>
+                 
+                </Link>
 
-                <Link to='/createPost' className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaPenToSquare size={25} /> Post</Link>
+                <Link to='/createPost' className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaPenToSquare size={20} /> <span className='hidden md:block'>Post</span></Link>
 
-                <button className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><IoMdHelpCircleOutline size={25} /> Help</button>
+                <button className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><IoMdHelpCircleOutline size={20} /> <span className='hidden md:block'>Help</span></button>
             </div>
         </div>
     );

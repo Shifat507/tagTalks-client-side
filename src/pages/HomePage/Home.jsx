@@ -15,7 +15,7 @@ const Home = () => {
     return (
         <div className='mx-auto flex justify-between'>
             {/* category */}
-            <aside className='w-72 px-4'>
+            <aside className='w-72 px-4 md:block hidden'>
                 <div>
                     <h1 className='text-2xl font-semibold mb-3 flex items-center gap-3'><MdOutlineCategory size={30} /> Categories</h1>
                     <select onChange={handleCategory} className="select select-primary w-full max-w-xs">
@@ -35,7 +35,7 @@ const Home = () => {
 
                 <AllPosts category={category}></AllPosts>
             </div>
-            <aside className='w-72 px-4'>
+            <aside className='w-72 px-4  md:block hidden'>
                 <h1 className='text-2xl font-semibold'>Announcement</h1>
             </aside>
         </div>

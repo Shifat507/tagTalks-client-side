@@ -94,7 +94,7 @@ const Post = ({ post }) => {
     useEffect(() => {
         fetchCommentCount();
     }, []);
-
+    fetchCommentCount();
     return (
         <div className=' bg-white shadow-lg rounded-lg p-6 mb-4 '>
             <div onClick={handleNavigateToDetails} className="hover:cursor-pointer pt-3">
@@ -139,43 +139,49 @@ const Post = ({ post }) => {
             <div className='divider pt-2'></div>
             <div>
                 {/* Interaction Section */}
-                <div className="mt-4 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                <div className="mt-4 flex items-center justify-around md:justify-between">
+                    <div className="flex items-center gap-2 md:gap-4 ">
                         <button
                             onClick={handleUpvote}
                             disabled={isUpvoted}
-                            className={`${isUpvoted ? 'btn-disabled' : 'btn-primary'
-                                } flex items-center gap-1 text-green-600 hover:bg-green-100 px-3 py-1 rounded-lg`}
+                            className={`${isUpvoted ? 'btn-disabled' : 'btn-primary'} flex items-center gap-1 text-green-600 hover:bg-green-100 px-3 py-1 rounded-lg border border-gray-400`}
                         >
-                            <span>{localUpVote} Upvote</span>
+                            <span className="hidden sm:block">{localUpVote} Upvote</span>
+                            <span className="sm:hidden">{localUpVote}</span>
                             <BiSolidUpvote size={20} />
                         </button>
+
                         <button
                             onClick={handleDownvote}
                             disabled={isDownvoted}
-                            className={`${isDownvoted ? 'btn-disabled' : 'btn-primary'
-                                } flex items-center gap-1 text-red-600 hover:bg-red-100 px-3 py-1 rounded-lg`}
+                            className={`${isDownvoted ? 'btn-disabled' : 'btn-primary'} flex items-center gap-1 text-red-600 hover:bg-red-100 px-3 py-1 rounded-lg border border-gray-400`}
                         >
                             <BiDownvote size={20} />
-                            <span>{localDownVote} Downvote</span>
+                            <span className="hidden sm:block">{localDownVote} Downvote</span>
+                            <span className="sm:hidden">{localDownVote}</span>
                         </button>
+
                     </div>
                     <div className="flex items-center gap-4">
                         <button
                             onClick={() => openModal(_id)}
-                            className="flex items-center gap-1 text-gray-700 hover:bg-gray-100 px-3 py-1 rounded-lg"
+                            className="flex items-center gap-1 text-gray-700 hover:bg-gray-100 px-3 py-1 rounded-lg border border-gray-400"
                         >
                             <FaRegCommentDots size={18} />
-                            <span>{commentCount} Comment</span>
+                            <span className="hidden sm:block">{commentCount} Comment</span>
+                            <span className="sm:hidden">{commentCount}</span>
                         </button>
-                        <FacebookShareButton
-                            url={`https://yourwebsite.com/post/${_id}`} // Replace with your post URL
-                            quote={postTitle}
-                            className="flex items-center gap-1 text-blue-600 hover:bg-blue-100 px-3 py-1 rounded-lg"
-                        >
-                            <FaShare size={18} />
-                            <span>Share</span>
-                        </FacebookShareButton>
+                        <div className='hover:text-blue-500'>
+                            <FacebookShareButton
+                                url={`https://yourwebsite.com/post/${_id}`} // Replace with your post URL
+                                quote={postTitle}
+                                className="flex items-center gap-1 text-blue-600 hover:bg-blue-100 px-3 py-1 rounded-lg"
+                            >
+                                <FaShare size={18} />
+                                <span className='hidden lg:block'>Share</span>
+
+                            </FacebookShareButton>
+                        </div>
                     </div>
                 </div>
 

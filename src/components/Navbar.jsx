@@ -52,7 +52,7 @@ const Navbar = () => {
                     </div>
                     <Link to='/' className="text-2xl font-bold flex items-center gap-2">
                         <img className='w-10 rounded-full' src={logo} alt="" />
-                        <div>
+                        <div className='hidden md:block'>
                             <span className='text-yellow-400 m-0 p-0'>Tag</span>
                             <span className='text-green-500 m-0 p-0'>Talks</span>
                         </div>
@@ -86,22 +86,7 @@ const Navbar = () => {
 
                             {/* dashboard drawer */}
                             <div>
-                                <div className="drawer drawer-end">
-                                    <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-                                    <div className="drawer-content">
-                                        {/* Page content here */}
-                                        <label htmlFor="my-drawer-4" className="drawer-button btn btn-primary">Dashboard</label>
-                                    </div>
-                                    <div className="drawer-side z-10">
-                                        <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                                        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                                            {/* Sidebar content here */}
-                                            <li><Link to='/userProfile'>My Profile</Link></li>
-                                            <li><Link to='/createPost'>Add Post</Link></li>
-                                            <li><Link to='/myPosts'>My Posts</Link></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                
 
                             </div>
 

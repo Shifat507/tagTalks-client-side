@@ -3,26 +3,21 @@ import Post from './Post'; // Assume this is the component to display a single p
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const AllPosts = ({ category }) => {
-    // console.log('Category: ', category);
-
-    const [count, setCount] = useState(0);  // Total post count
-    const [currentPage, setCurrentPage] = useState(0);  // Current page number
-    const [posts, setPosts] = useState([]);  // List of posts for the current page
-    const [loading, setLoading] = useState(false);  // Loading state
+    const [count, setCount] = useState(0); // Total post count
+    const [currentPage, setCurrentPage] = useState(0); // Current page number
+    const [posts, setPosts] = useState([]); // List of posts for the current page
+    const [loading, setLoading] = useState(false); // Loading state
 
     const axiosPublic = useAxiosPublic();
-    const itemPerPage = 5;  // Number of posts per page
+    const itemPerPage = 5; // Number of posts per page
 
     // Fetch the total post count
     useEffect(() => {
         const fetchPostCount = async () => {
             try {
-                let res;
-                if (category) {
-                    res = await axiosPublic.get(`/postsCount/${category}`);
-                } else {
-                    res = await axiosPublic.get('/postsCount');
-                }
+                const res = category
+                    ? await axiosPublic.get(`/postsCount/${category}`)
+                    : await axiosPublic.get('/postsCount');
                 setCount(res.data.count);
             } catch (error) {
                 console.error('Error fetching post count:', error);
@@ -37,24 +32,13 @@ const AllPosts = ({ category }) => {
         const fetchPosts = async () => {
             setLoading(true);
             try {
-                let res;
-                if (category) {
-                    // Fetch posts for the selected category
-                    res = await axiosPublic.get(`/post/${category}`, {
-                        params: {
-                            page: currentPage,
-                            size: itemPerPage,
-                        },
+                const res = category
+                    ? await axiosPublic.get(`/post/${category}`, {
+                        params: { page: currentPage, size: itemPerPage },
+                    })
+                    : await axiosPublic.get('/post', {
+                        params: { page: currentPage, size: itemPerPage },
                     });
-                } else {
-                    // Fetch posts for all categories
-                    res = await axiosPublic.get('/post', {
-                        params: {
-                            page: currentPage,
-                            size: itemPerPage,
-                        },
-                    });
-                }
                 setPosts(res.data);
             } catch (error) {
                 console.error('Error fetching posts:', error);
@@ -68,7 +52,38 @@ const AllPosts = ({ category }) => {
 
     // Pagination logic
     const numberOfPages = Math.ceil(count / itemPerPage);
-    const pages = [...Array(numberOfPages).keys()];
+
+    // Generate page numbers with ellipses
+    const generatePageNumbers = () => {
+        const pages = [];
+        const maxPagesToShow = 5;
+        const ellipsis = '...';
+
+        if (numberOfPages <= maxPagesToShow) {
+            for (let i = 0; i < numberOfPages; i++) {
+                pages.push(i);
+            }
+        } else {
+            const startPages = [0, 1];
+            const endPages = [numberOfPages - 2, numberOfPages - 1];
+            const middlePages = [currentPage - 1, currentPage, currentPage + 1].filter(
+                (page) => page > 1 && page < numberOfPages - 2
+            );
+
+            const combinedPages = [...new Set([...startPages, ...middlePages, ...endPages])];
+
+            combinedPages.forEach((page, index) => {
+                if (index > 0 && page - combinedPages[index - 1] > 1) {
+                    pages.push(ellipsis);
+                }
+                pages.push(page);
+            });
+        }
+
+        return pages;
+    };
+
+    const pages = generatePageNumbers();
 
     const handlePrevPage = () => {
         if (currentPage > 0) {
@@ -89,25 +104,28 @@ const AllPosts = ({ category }) => {
     return (
         <div>
             {/* Render posts */}
-            {
-                posts.map((post, idx) => (
-                    <Post key={post._id || idx} post={post} />
-                ))
-            }
+            {posts.map((post, idx) => (
+                <Post key={post._id || idx} post={post} />
+            ))}
 
             {/* Pagination controls */}
-            <div className="flex justify-center my-10">
-                <div>
-                    <button
-                        onClick={handlePrevPage}
-                        disabled={currentPage === 0}
-                        className={`btn border-2 border-gray-300 mr-1 ${currentPage === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                        Previous Page
-                    </button>
+            <div className="flex flex-wrap justify-center my-10 space-x-2">
+                <button
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 0}
+                    className={`hidden md:block btn border-2 border-gray-300 ${currentPage === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                   
+                    <span className='hidden md:block'>Previous</span>
+                </button>
 
-                    <div className="join">
-                        {pages.map((page) => (
+                <div className="join flex flex-wrap justify-center space-x-2">
+                    {pages.map((page, idx) =>
+                        page === '...' ? (
+                            <span key={idx} className="join-item btn btn-square">
+                                ...
+                            </span>
+                        ) : (
                             <button
                                 key={page}
                                 onClick={() => setCurrentPage(page)}
@@ -117,18 +135,19 @@ const AllPosts = ({ category }) => {
                             >
                                 {page + 1}
                             </button>
-                        ))}
-                    </div>
-
-                    <button
-                        onClick={handleNextPage}
-                        disabled={currentPage >= numberOfPages - 1}
-                        className={`btn border-2 border-gray-300 ml-1 ${currentPage >= numberOfPages - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                        Next Page
-                    </button>
+                        )
+                    )}
                 </div>
+
+                <button
+                    onClick={handleNextPage}
+                    disabled={currentPage >= numberOfPages - 1}
+                    className={`hidden md:block btn border-2 border-gray-300 ${currentPage >= numberOfPages - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                    <span className='hidden md:block'>Next</span>
+                </button>
             </div>
+
         </div>
     );
 };
