@@ -24,7 +24,7 @@ const PopularPost = () => {
 
     return (
         <div>
-            <div>
+            <div className='w-10/12 mx-auto'>
                 {
                     popular && popular.map((post, idx) => <Post key={idx} post={post}></Post>)
                 }

@@ -78,7 +78,7 @@ const Navbar = () => {
                                     <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] md:w-44 p-2 shadow ">
                                         <li><button className='btn-disabled'>{user.displayName}</button></li>
                                         {/* dashboard */}
-                                        <li><Link>Dashboard</Link></li>
+                                        <li><Link to='/dashboard'>Dashboard</Link></li>
                                         <li><button onClick={handleLogout}>Logout</button></li>
                                     </ul>
                                 </details>

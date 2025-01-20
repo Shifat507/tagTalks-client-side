@@ -7,6 +7,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../components/CheckoutForm';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import { AuthContext } from '../providers/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const Membership = () => {
     const axiosPublic = useAxiosPublic();
@@ -24,18 +25,25 @@ const Membership = () => {
         <div>
             {
                 member === 'Bronze' ? <div>
-                <Lottie animationData={premiumIcon} className='w-24'></Lottie>
-                <div className='flex items-center'>
-                    <h1 className='text-3xl font-semibold '>Become A Member Now!</h1>
-                    <Lottie animationData={goldBadge} className='w-16'></Lottie>
-                </div>
+                    <Lottie animationData={premiumIcon} className='w-24'></Lottie>
+                    <div className='flex items-center'>
+                        <h1 className='text-3xl font-semibold '>Become A Member Now!</h1>
+                        <Lottie animationData={goldBadge} className='w-16'></Lottie>
+                    </div>
 
-                <div>
-                    <Elements stripe={stripePromise}>
-                        <CheckoutForm></CheckoutForm>
-                    </Elements>
+                    <div>
+                        <Elements stripe={stripePromise}>
+                            <CheckoutForm></CheckoutForm>
+                        </Elements>
+                    </div>
+                </div> : <div className='my-16'>
+                    <div className='flex justify-center'><h2 className='text-green-500 font-semibold text-2xl'>You are already our vip member</h2>
+
+                    </div>
+                    <div className='my-6 flex justify-center'>
+                        <Link to='/' className='btn btn-primary'>Back to Home</Link>
+                    </div>
                 </div>
-            </div> : <div><h2>You are already our member</h2></div>
             }
         </div>
     );

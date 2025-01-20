@@ -96,8 +96,8 @@ const Post = ({ post }) => {
     }, []);
 
     return (
-        <div className='hover:cursor-pointer'>
-            <div onClick={handleNavigateToDetails} className="bg-white shadow-lg rounded-lg p-4 mb-4">
+        <div className=' bg-white shadow-lg rounded-lg p-6 mb-4 '>
+            <div onClick={handleNavigateToDetails} className="hover:cursor-pointer pt-3">
                 {/* Header Section */}
                 <div className="flex items-center gap-4">
                     <div className="avatar">
@@ -135,7 +135,9 @@ const Post = ({ post }) => {
                         />
                     </div>
                 )}
-
+            </div>
+            <div className='divider pt-2'></div>
+            <div>
                 {/* Interaction Section */}
                 <div className="mt-4 flex items-center justify-between">
                     <div className="flex items-center gap-4">

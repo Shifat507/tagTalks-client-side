@@ -3,7 +3,7 @@ import Post from './Post'; // Assume this is the component to display a single p
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const AllPosts = ({ category }) => {
-    console.log('Category: ', category);
+    // console.log('Category: ', category);
 
     const [count, setCount] = useState(0);  // Total post count
     const [currentPage, setCurrentPage] = useState(0);  // Current page number
