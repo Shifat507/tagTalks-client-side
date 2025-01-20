@@ -13,7 +13,7 @@ const Navbar = () => {
         <li><NavLink to='/' className='mx-2 md:mx-5 tooltip tooltip-bottom text-blue-600' data-tip="Home" ><TbHomeFilled size={25} /></NavLink></li>
         <li><NavLink to='/membership' className='mx-2 md:mx-5 tooltip tooltip-bottom text-blue-600' data-tip="Membership" ><FaIdCard size={28} /></NavLink></li>
         <li><NavLink to='/notifications' className='mx-2 md:mx-5 tooltip tooltip-bottom text-blue-600' data-tip="Notifications" ><IoIosNotifications size={28} /></NavLink></li>
-        <li><NavLink to='/joinUs' className='mx-2 md:mx-5 tooltip tooltip-bottom text-blue-600' data-tip="Join Us" ><BsPersonFillAdd size={25} /></NavLink></li>
+        {/* <li><NavLink to='/joinUs' className='mx-2 md:mx-5 tooltip tooltip-bottom text-blue-600' data-tip="Join Us" ><BsPersonFillAdd size={25} /></NavLink></li> */}
     </>
     const menu = <>
         <li><NavLink to='/' className='mx-2 md:mx-5  text-blue-600' ><TbHomeFilled size={28} />Home</NavLink></li>
