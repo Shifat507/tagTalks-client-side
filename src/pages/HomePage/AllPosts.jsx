@@ -4,7 +4,7 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const AllPosts = ({ category }) => {
     console.log('Category: ', category);
-    
+
     const [count, setCount] = useState(0);  // Total post count
     const [currentPage, setCurrentPage] = useState(0);  // Current page number
     const [posts, setPosts] = useState([]);  // List of posts for the current page
@@ -89,9 +89,11 @@ const AllPosts = ({ category }) => {
     return (
         <div>
             {/* Render posts */}
-            {posts.map((post, idx) => (
-                <Post key={post._id || idx} post={post} />
-            ))}
+            {
+                posts.map((post, idx) => (
+                    <Post key={post._id || idx} post={post} />
+                ))
+            }
 
             {/* Pagination controls */}
             <div className="flex justify-center my-10">

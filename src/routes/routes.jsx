@@ -13,6 +13,7 @@ import PopularPost from "../pages/HomePage/PopularPost";
 import PrivateRoute from "./PrivateRoute";
 import UserProfile from "../pages/userProfile";
 import MyPosts from "../pages/MyPosts";
+import PostDetails from "../pages/PostDetails";
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
             {
                 path: '/myPosts',
                 element: <PrivateRoute><MyPosts></MyPosts></PrivateRoute>
+            },
+            {
+                path: '/postDetails/:id',
+                element: <PostDetails></PostDetails>
             }
         ]
     },
