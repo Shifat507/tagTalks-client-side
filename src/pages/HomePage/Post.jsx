@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { BiDownvote, BiSolidUpvote } from 'react-icons/bi';
 import { FaRegCommentDots, FaShare } from 'react-icons/fa';
+import { FacebookShareButton } from 'react-share'; // Import FacebookShareButton
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import usePost from '../../hooks/usePost';
 import { AuthContext } from '../../providers/AuthProvider';
@@ -18,7 +19,6 @@ const Post = ({ post }) => {
     const { authorImage, postTitle, postImg, tag, createdAt, postDescription, _id } = post;
     const axiosPublic = useAxiosPublic();
     const [, , refetch] = usePost();
-    // console.log(comment);
 
     const openModal = (id) => {
         setModalTitle(postTitle);
@@ -61,36 +61,31 @@ const Post = ({ post }) => {
         postId: _id,
         comment,
         postTitle,
-        email: user?.email
-    }
+        email: user?.email,
+    };
 
     const handleComment = async () => {
-        if(comment === ''){
+        if (comment === '') {
             return;
         }
 
-        const commentRes = await axiosPublic.post('/comments', commentInfo)
+        const commentRes = await axiosPublic.post('/comments', commentInfo);
         console.log(commentRes.data);
-        setComment('')
-    }
+        setComment('');
+    };
 
-    //count comment
     const fetchCommentCount = async () => {
         try {
             const res = await axiosPublic.get(`/comments/count/${_id}`);
             setCommentCount(res.data.commentCount);
         } catch (error) {
-            console.error("Error fetching comment count:", error.message);
+            console.error('Error fetching comment count:', error.message);
         }
     };
-    useEffect(() => {  
+
+    useEffect(() => {
         fetchCommentCount();
-    },[]);
-    fetchCommentCount();
-    
-    
-
-
+    }, []);
 
     return (
         <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
@@ -138,8 +133,9 @@ const Post = ({ post }) => {
                     <button
                         onClick={handleUpvote}
                         disabled={isUpvoted}
-                        className={`${isUpvoted ? 'btn-disabled' : 'btn-primary'
-                            } flex items-center gap-1 text-green-600 hover:bg-green-100 px-3 py-1 rounded-lg`}
+                        className={`${
+                            isUpvoted ? 'btn-disabled' : 'btn-primary'
+                        } flex items-center gap-1 text-green-600 hover:bg-green-100 px-3 py-1 rounded-lg`}
                     >
                         <span>{localUpVote} Upvote</span>
                         <BiSolidUpvote size={20} />
@@ -147,8 +143,9 @@ const Post = ({ post }) => {
                     <button
                         onClick={handleDownvote}
                         disabled={isDownvoted}
-                        className={`${isDownvoted ? 'btn-disabled' : 'btn-primary'
-                            } flex items-center gap-1 text-red-600 hover:bg-red-100 px-3 py-1 rounded-lg`}
+                        className={`${
+                            isDownvoted ? 'btn-disabled' : 'btn-primary'
+                        } flex items-center gap-1 text-red-600 hover:bg-red-100 px-3 py-1 rounded-lg`}
                     >
                         <BiDownvote size={20} />
                         <span>{localDownVote} Downvote</span>
@@ -162,12 +159,14 @@ const Post = ({ post }) => {
                         <FaRegCommentDots size={18} />
                         <span>{commentCount} Comment</span>
                     </button>
-                    <button
+                    <FacebookShareButton
+                        url={`https://yourwebsite.com/post/${_id}`} // Replace with your post URL
+                        quote={postTitle}
                         className="flex items-center gap-1 text-blue-600 hover:bg-blue-100 px-3 py-1 rounded-lg"
                     >
                         <FaShare size={18} />
                         <span>Share</span>
-                    </button>
+                    </FacebookShareButton>
                 </div>
             </div>
 
@@ -185,7 +184,9 @@ const Post = ({ post }) => {
                     ></textarea>
                     <div className="modal-action">
                         <form method="dialog">
-                            <button onClick={handleComment} className="btn">Done</button>
+                            <button onClick={handleComment} className="btn">
+                                Done
+                            </button>
                         </form>
                     </div>
                 </div>

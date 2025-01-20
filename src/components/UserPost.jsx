@@ -31,7 +31,7 @@ const UserPost = ({ post, refetch }) => {
         
     }
     return (
-        <div className=" mx-auto my-4">
+        <div className=" mx-auto my-4 ">
             <div className="bg-white shadow-lg rounded-xl p-6 flex flex-col gap-6 border border-gray-200">
                 {/* Post Title */}
                 <h2 className="text-xl font-semibold text-gray-800">{postTitle}</h2>

@@ -5,10 +5,12 @@ import {
     signInWithPopup, 
     signOut, 
     updateProfile, 
-    GoogleAuthProvider 
+    GoogleAuthProvider,
+    FacebookAuthProvider
 } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.config';
+
 
 export const AuthContext = createContext(null);
 
@@ -49,6 +51,13 @@ const AuthProvider = ({ children }) => {
         }
     };
 
+    const facebookProvider = new FacebookAuthProvider();
+    const facebookSignIn = () =>{
+        setLoading(true);
+
+        return signInWithPopup(auth, facebookProvider);
+    }
+
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -66,6 +75,7 @@ const AuthProvider = ({ children }) => {
         logout,
         userUpdateData,
         googleSignIn,
+        facebookSignIn
     };
 
     return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;

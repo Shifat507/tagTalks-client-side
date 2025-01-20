@@ -67,7 +67,7 @@ const Navbar = () => {
                     {
                         user ? <div className='flex items-center gap-4'>
                             <div className="">
-                                <details className="dropdown">
+                                <details className="dropdown ">
                                     <summary className="cursor-pointer list-none">
                                         <div className="avatar">
                                             <div className="ring-primary ring-offset-base-100 w-8 rounded-full ring ring-offset-2">
@@ -75,31 +75,37 @@ const Navbar = () => {
                                             </div>
                                         </div>
                                     </summary>
-                                    <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                                    <li><button className='btn-disabled'>{user.displayName}</button></li>
+                                    <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] md:w-44 p-2 shadow ">
+                                        <li><button className='btn-disabled'>{user.displayName}</button></li>
+                                        {/* dashboard */}
                                         <li><Link>Dashboard</Link></li>
                                         <li><button onClick={handleLogout}>Logout</button></li>
                                     </ul>
                                 </details>
                             </div>
-                            <div className="drawer drawer-end">
-                            <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-                            <div className="drawer-content">
-                                {/* Page content here */}
-                                <label htmlFor="my-drawer-4" className="drawer-button btn btn-primary">Dashboard</label>
-                            </div>
-                            <div className="drawer-side">
-                                <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                                <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                                    {/* Sidebar content here */}
-                                    <li><Link to='/userProfile'>My Profile</Link></li>
-                                    <li><Link to='/createPost'>Add Post</Link></li>
-                                    <li><Link to='/myPosts'>My Posts</Link></li>
-                                </ul>
-                            </div>
-                        </div>
 
-                        </div> : <Link to='/login' className="bg-blue-600 px-4 py-2 rounded-md text-md text-white font-semibold hover:bg-blue-500">Login</Link>
+                            {/* dashboard drawer */}
+                            <div>
+                                <div className="drawer drawer-end">
+                                    <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+                                    <div className="drawer-content">
+                                        {/* Page content here */}
+                                        <label htmlFor="my-drawer-4" className="drawer-button btn btn-primary">Dashboard</label>
+                                    </div>
+                                    <div className="drawer-side z-10">
+                                        <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
+                                        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                                            {/* Sidebar content here */}
+                                            <li><Link to='/userProfile'>My Profile</Link></li>
+                                            <li><Link to='/createPost'>Add Post</Link></li>
+                                            <li><Link to='/myPosts'>My Posts</Link></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div> : <Link to='/login' className="bg-blue-600 px-4 py-2 rounded-md text-md text-white font-semibold hover:bg-blue-500">Join Us</Link>
                     }
                 </div>
             </div>

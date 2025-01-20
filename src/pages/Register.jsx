@@ -6,13 +6,15 @@ import { AuthContext } from '../providers/AuthProvider';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import { FcGoogle } from 'react-icons/fc';
 import usePostCount from '../hooks/usePostCount';
+import { FaFacebook } from 'react-icons/fa';
 
 const Register = () => {
     const axiosPublic = useAxiosPublic();
     const { postCount } = usePostCount();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const { createUser, userUpdateData, googleSignIn } = useContext(AuthContext);
+    const { createUser, userUpdateData, googleSignIn, facebookSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
+
     const handleGoogleSignin = () => {
         googleSignIn()
             .then(res => {
@@ -34,6 +36,27 @@ const Register = () => {
             })
 
     }
+
+    const handleFacebookSignin = () => {
+        facebookSignIn()
+            .then(res => {
+                console.log(res);
+                const userInfo = {
+                    email: res.user?.email,
+                    name: res.user?.displayName,
+                    userBadge: 'Bronze'
+
+                }
+                //send user data to DB
+                axiosPublic.post('/users', userInfo)
+                    .then(() => {
+                        navigate('/');
+                    });
+                console.log(res.user);
+                navigate('/')
+            })
+    }
+
     const onSubmit = (data) => {
         const { email, password, name, photoURL } = data;
         createUser(email, password)
@@ -82,10 +105,9 @@ const Register = () => {
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse md:w-10/12 mx-auto">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Signup now!</h1>
+                        <h1 className="text-4xl font-bold">Signup now!</h1>
                         <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
+                            Create an account to connect with others, share your insights, and dive into meaningful discussions. Be part of a vibrant community where your voice matters!
                         </p>
                     </div>
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -129,12 +151,19 @@ const Register = () => {
                             </div>
                             <p className='mx-auto'>Already have an account? <Link to='/login' className='text-blue-700 font-semibold'>Login Now!</Link></p>
                         </form>
-                        <div className='mx-6 mb-6'>
-                            <div className='divider'>or</div>
-                            <button onClick={handleGoogleSignin} className="btn w-full">
-                                <FcGoogle size={20} className='flex' />
-                                Signup with Google
-                            </button>
+                        <div className="divider">or</div>
+                        <div className='grid grid-cols-1 md:grid-cols-2'>
+                            <div className="mx-6 mb-6">
+
+                                <button onClick={handleGoogleSignin} className="btn w-full">
+                                    <span className='flex items-center'><FcGoogle size={30} />Login with Google</span>
+                                </button>
+                            </div>
+                            <div className="mx-6 mb-6">
+                                <button onClick={handleFacebookSignin} className="btn w-full">
+                                    <span className='flex items-center'><FaFacebook className='text-blue-600' size={30} /> Login with Facebook</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

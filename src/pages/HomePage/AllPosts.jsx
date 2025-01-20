@@ -2,44 +2,59 @@ import React, { useEffect, useState } from 'react';
 import Post from './Post'; // Assume this is the component to display a single post
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
-const AllPosts = () => {
-    // State to hold the total count of posts
-    const [count, setCount] = useState(0);
-    // Current page number
-    const [currentPage, setCurrentPage] = useState(0);
-    // List of posts for the current page
-    const [posts, setPosts] = useState([]);
-    // Loading state
-    const [loading, setLoading] = useState(false);
+const AllPosts = ({ category }) => {
+    console.log('Category: ', category);
+    
+    const [count, setCount] = useState(0);  // Total post count
+    const [currentPage, setCurrentPage] = useState(0);  // Current page number
+    const [posts, setPosts] = useState([]);  // List of posts for the current page
+    const [loading, setLoading] = useState(false);  // Loading state
 
     const axiosPublic = useAxiosPublic();
-    const itemPerPage = 5; // Number of posts per page
-
-    // Calculate the total number of pages
-    const numberOfPages = Math.ceil(count / itemPerPage);
-    const pages = [...Array(numberOfPages).keys()];
+    const itemPerPage = 5;  // Number of posts per page
 
     // Fetch the total post count
     useEffect(() => {
         const fetchPostCount = async () => {
-            const res = await axiosPublic.get('/postsCount');
-            setCount(res.data.count);
+            try {
+                let res;
+                if (category) {
+                    res = await axiosPublic.get(`/postsCount/${category}`);
+                } else {
+                    res = await axiosPublic.get('/postsCount');
+                }
+                setCount(res.data.count);
+            } catch (error) {
+                console.error('Error fetching post count:', error);
+            }
         };
 
         fetchPostCount();
-    }, [axiosPublic]);
+    }, [category, axiosPublic]);
 
-    // Fetch posts for the current page
+    // Fetch posts for the current page and category
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true);
             try {
-                const res = await axiosPublic.get('/post', {
-                    params: {
-                        page: currentPage,
-                        size: itemPerPage,
-                    },
-                });
+                let res;
+                if (category) {
+                    // Fetch posts for the selected category
+                    res = await axiosPublic.get(`/post/${category}`, {
+                        params: {
+                            page: currentPage,
+                            size: itemPerPage,
+                        },
+                    });
+                } else {
+                    // Fetch posts for all categories
+                    res = await axiosPublic.get('/post', {
+                        params: {
+                            page: currentPage,
+                            size: itemPerPage,
+                        },
+                    });
+                }
                 setPosts(res.data);
             } catch (error) {
                 console.error('Error fetching posts:', error);
@@ -49,18 +64,20 @@ const AllPosts = () => {
         };
 
         fetchPosts();
-    }, [axiosPublic, currentPage, itemPerPage]);
+    }, [category, currentPage, itemPerPage, axiosPublic]);
 
-    // Handle previous page
+    // Pagination logic
+    const numberOfPages = Math.ceil(count / itemPerPage);
+    const pages = [...Array(numberOfPages).keys()];
+
     const handlePrevPage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1);
         }
     };
 
-    // Handle next page
     const handleNextPage = () => {
-        if (currentPage < pages.length - 1) {
+        if (currentPage < numberOfPages - 1) {
             setCurrentPage(currentPage + 1);
         }
     };
@@ -92,8 +109,7 @@ const AllPosts = () => {
                             <button
                                 key={page}
                                 onClick={() => setCurrentPage(page)}
-                                className={`join-item btn btn-square ${page === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-200'
-                                    }`}
+                                className={`join-item btn btn-square ${page === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
                                 type="button"
                                 aria-label={`Page ${page + 1}`}
                             >
@@ -104,9 +120,8 @@ const AllPosts = () => {
 
                     <button
                         onClick={handleNextPage}
-                        disabled={currentPage >= pages.length - 1}
-                        className={`btn border-2 border-gray-300 ml-1 ${currentPage >= pages.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
-                            }`}
+                        disabled={currentPage >= numberOfPages - 1}
+                        className={`btn border-2 border-gray-300 ml-1 ${currentPage >= numberOfPages - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
                     >
                         Next Page
                     </button>

@@ -10,16 +10,12 @@ const MainLayout = () => {
             <header>
                 <Navbar></Navbar>
             </header>
-            <main className='mx-auto flex justify-between'>
-                <aside className='w-80 px-4'>
-                    <Categories></Categories>
-                </aside>
-                <div className='w-full mx-5'>
+            <main className=''>
+                
+                <div className=''>
                     <Outlet></Outlet>
                 </div>
-                <aside className='w-96'>
-                    <h1 className='text-2xl font-semibold'>Announcement</h1>
-                </aside>
+                
             </main>
             <footer>
                 {/* <Footer></Footer> */}

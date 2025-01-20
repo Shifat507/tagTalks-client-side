@@ -6,7 +6,7 @@ const useAllPosts = () => {
 
     const axiosPublic = useAxiosPublic();
     const {user} = useContext(AuthContext);
-
+    // user's all posts
     const {data : posts=[], isPaused: loading, refetch} = useQuery({
         queryKey: ['posts'],
         queryFn: async()=>{
