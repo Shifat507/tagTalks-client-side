@@ -6,7 +6,7 @@ import { AuthContext } from '../providers/AuthProvider';
 
 
 const axiosSecure = axios.create({
-    baseURL : 'http://localhost:5000'
+    baseURL : 'https://tagtalks-server-side.vercel.app'
 })
 const useAxiosSecure = () => {
     const {logout} = useContext(AuthContext);

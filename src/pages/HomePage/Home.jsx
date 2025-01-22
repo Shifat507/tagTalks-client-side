@@ -10,11 +10,11 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [category, setCategory] = useState('');
-    console.log(category);
+    // console.log(category);
     const handleCategory = (e) => {
         setCategory(e.target.value);
     }
-    console.log(category);
+    // console.log(category);
     const [isAdmin] = useAdmin();
 
     return (

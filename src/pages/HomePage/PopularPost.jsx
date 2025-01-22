@@ -18,7 +18,7 @@ const PopularPost = () => {
     }, [axiosPublic]);
 
 
-    console.log(popular);
+    // console.log(popular);
 
 
 

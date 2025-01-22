@@ -32,7 +32,7 @@ const Login = () => {
     const handleGoogleSignin = () => {
         googleSignIn()
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 const userInfo = {
                     email: res.user?.email,
                     name: res.user?.displayName,
@@ -44,7 +44,7 @@ const Login = () => {
                     .then(() => {
                         navigate('/');
                     });
-                console.log(res.user);
+                // console.log(res.user);
                 navigate('/')
             })
     };
@@ -52,7 +52,7 @@ const Login = () => {
     const handleFacebookSignin = () => {
         facebookSignIn()
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 const userInfo = {
                     email: res.user?.email,
                     name: res.user?.displayName,
@@ -64,7 +64,7 @@ const Login = () => {
                     .then(() => {
                         navigate('/');
                     });
-                console.log(res.user);
+                // console.log(res.user);
                 navigate('/')
             })
     }

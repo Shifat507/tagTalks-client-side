@@ -31,7 +31,7 @@ const Register = () => {
                     .then(() => {
                         navigate('/');
                     });
-                console.log(res.user);
+                // console.log(res.user);
                 navigate('/')
             })
 
@@ -40,7 +40,7 @@ const Register = () => {
     const handleFacebookSignin = () => {
         facebookSignIn()
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 const userInfo = {
                     email: res.user?.email,
                     name: res.user?.displayName,
@@ -52,7 +52,7 @@ const Register = () => {
                     .then(() => {
                         navigate('/');
                     });
-                console.log(res.user);
+                // console.log(res.user);
                 navigate('/')
             })
     }
@@ -61,7 +61,7 @@ const Register = () => {
         const { email, password, name, photoURL } = data;
         createUser(email, password)
             .then(res => {
-                console.log(res.user);
+                // console.log(res.user);
                 userUpdateData(name, photoURL)
                     .then(res => {
                         // create user entry in DB
@@ -83,7 +83,7 @@ const Register = () => {
 
             .catch(error => {
 
-                console.error(error);
+                // console.error(error);
                 alert("Error: ", error.message);
             });
 

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 const Categories = () => {
     const [category, setCategory] = useState('');
-    console.log(category);
+    // console.log(category);
     const handleCategory = (e) => {
         const selectedCategory = e.target.value;
         localStorage.setItem('selectedCategory', selectedCategory);

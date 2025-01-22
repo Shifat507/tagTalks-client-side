@@ -22,7 +22,7 @@ const CheckoutForm = () => {
     useEffect(() => {
         axiosPublic.post('/create-payment-intent', { price })
             .then(res => {
-                console.log(res.data.clientSecret);
+                // console.log(res.data.clientSecret);
                 setClientSecret(res.data.clientSecret);
             })
     }, [axiosPublic, price])
@@ -46,10 +46,10 @@ const CheckoutForm = () => {
         });
 
         if (error) {
-            console.log('[error]', error);
+            // console.log('[error]', error);
             setError(error.message);
         } else {
-            console.log('[PaymentMethod]', paymentMethod);
+            // console.log('[PaymentMethod]', paymentMethod);
             setError('');
         }
 
@@ -65,12 +65,12 @@ const CheckoutForm = () => {
         })
 
         if (confirmError) {
-            console.log('confirm error');
+            // console.log('confirm error');
         }
         else {
-            console.log('payment intent :', paymentIntent);
+            // console.log('payment intent :', paymentIntent);
             if (paymentIntent.status === 'succeeded') {
-                console.log('Transaction Id :', paymentIntent.id);
+                // console.log('Transaction Id :', paymentIntent.id);
                 setTransactionId(paymentIntent.id);
 
                 // Now save the payment to DB
@@ -84,11 +84,11 @@ const CheckoutForm = () => {
 
                 //update user info
                 const updateRes = await axiosPublic.get(`/payment/${user.email}`)
-                console.log(updateRes.data);
+                // console.log(updateRes.data);
 
                 // replace it by axiosSecure
                 const paymentRes = await axiosPublic.post('/payment', payment)
-                console.log('payment saved ', paymentRes);
+                // console.log('payment saved ', paymentRes);
 
                 if (paymentRes.data?.insertedId) {
                     Swal.fire({

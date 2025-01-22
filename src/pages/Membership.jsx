@@ -19,7 +19,7 @@ const Membership = () => {
         setMember(res.data[0].userBadge);
     }
     checkMember();
-    console.log(member);
+    // console.log(member);
 
     return (
         <div className='w-11/12 mx-auto'>

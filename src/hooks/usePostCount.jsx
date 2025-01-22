@@ -29,7 +29,7 @@ const usePostCount = () => {
                 fetchPostCount();
             }
         }, [user.email, axiosPublic]);
-        console.log(postCount);
+        // console.log(postCount);
     }
 
     

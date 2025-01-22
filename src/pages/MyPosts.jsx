@@ -10,7 +10,7 @@ const MyPosts = () => {
     const {user} = useContext(AuthContext);
 
     const [posts, ,refetch] = useAllPosts();
-    console.log(posts);
+    // console.log(posts);
 
 
     return (

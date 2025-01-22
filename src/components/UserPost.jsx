@@ -27,7 +27,7 @@ const UserPost = ({ post, refetch }) => {
             }
         });
 
-        console.log(deleteRes);
+        // console.log(deleteRes);
         
     }
     return (

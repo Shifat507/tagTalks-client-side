@@ -78,7 +78,7 @@ const Post = ({ post }) => {
         }
 
         const commentRes = await axiosPublic.post('/comments', commentInfo);
-        console.log(commentRes.data);
+        // console.log(commentRes.data);
         setComment('');
     };
 

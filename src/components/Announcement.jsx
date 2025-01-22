@@ -19,10 +19,10 @@ const Announcement = () => {
       image: user.photoURL,
       date: new Date().toISOString(), // Add the current date and time
     };
-    console.log(announcement);
+    // console.log(announcement);
     try {
       const res = await axiosSecure.post("/announcement", announcement);
-      console.log(res.data);
+    //   console.log(res.data);
       setTitle("");
       setDescription("");
     } catch (error) {

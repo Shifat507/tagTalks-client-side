@@ -35,7 +35,7 @@ const CreatePost = () => {
         setUserBadge(badgeRes.data[0].userBadge);
     }
     checkUserBadge();
-    console.log(userBadge);
+    // console.log(userBadge);
 
     // const [postCount, setPostCount] = useState(null); // Initial state set to null
     const [loading, setLoading] = useState(true); // Loading state to handle async data fetching
@@ -69,7 +69,7 @@ const CreatePost = () => {
 
     // Conditional logic based on post count
     if (postCount > 5 && userBadge === 'Bronze') {
-        console.log('Post korsy 5 ta ba tar beshi');
+        // console.log('Post korsy 5 ta ba tar beshi');
         Swal.fire({
             title: "Please Upgrade Your Plane",
             text: "Your post limit is exceeds. Get unlimited post limit for lifetime at only $59",
@@ -88,7 +88,7 @@ const CreatePost = () => {
 
 
     } else {
-        console.log('5 tar kom e korsy');
+        // console.log('5 tar kom e korsy');
 
     }
 
