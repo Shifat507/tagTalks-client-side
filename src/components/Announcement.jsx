@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Announcement = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const axiosSecure = useAxiosSecure();
+  const {user} = useContext(AuthContext);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const announcement = {
       title,
       description,
+      name: user.displayName,
+      image: user.photoURL,
       date: new Date().toISOString(), // Add the current date and time
     };
     console.log(announcement);

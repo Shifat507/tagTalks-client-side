@@ -30,15 +30,26 @@ const Notifications = () => {
               key={index}
               className="p-4 border rounded shadow-md hover:shadow-lg transition-shadow"
             >
+              <div className="flex items-center mb-4">
+                <img
+                  src={notification.image}
+                  alt={notification.name}
+                  className="w-10 h-10 rounded-full mr-3"
+                />
+                <div>
+                  <p className="text-lg font-medium">{notification.name}</p>
+                  <p className="text-sm text-gray-500">
+                    Posted on:{" "}
+                    {new Date(notification.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
+                </div>
+              </div>
               <h2 className="text-xl font-semibold">{notification.title}</h2>
               <p className="text-gray-600 mt-2">{notification.description}</p>
-              <p className="text-sm text-gray-500 mt-2">
-                Posted on: {new Date(notification.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </p>
             </div>
           ))
         ) : (
