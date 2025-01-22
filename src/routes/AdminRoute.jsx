@@ -3,7 +3,7 @@ import { AuthContext } from '../providers/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
 import { Navigate, useLocation } from 'react-router-dom';
 
-const AdminRoute = () => {
+const AdminRoute = ({children}) => {
     const { user, loading } = useContext(AuthContext);
     const [isAdmin, isAdminLoading] = useAdmin();
     const location = useLocation();
