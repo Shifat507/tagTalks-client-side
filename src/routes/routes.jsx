@@ -22,6 +22,7 @@ import Announcement from "../components/Announcement";
 import Activities from "../components/Activities";
 import AdminProfile from "../components/AdminProfile";
 import AdminRoute from "./AdminRoute";
+import Help from "../pages/Help";
 
 export const router = createBrowserRouter([
     {
@@ -79,12 +80,16 @@ export const router = createBrowserRouter([
             {
                 path: "/announcement",
                 element: <Announcement></Announcement>
+            },
+            {
+                path: "/help",
+                element: <Help></Help>
             }
         ]
     },
     {
         path: "dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: '',

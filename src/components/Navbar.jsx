@@ -18,8 +18,8 @@ const Navbar = () => {
     const menu = <>
         <li><NavLink to='/' className='mx-2 md:mx-5  text-blue-600' ><TbHomeFilled size={28} />Home</NavLink></li>
         <li><NavLink to='/membership' className='mx-2 md:mx-5 text-blue-600'  ><FaIdCard size={28} />Membership</NavLink></li>
-        <li><NavLink to='/notification' className='mx-2 md:mx-5  text-blue-600'><IoIosNotifications size={28} />Notifications</NavLink></li>
-        <li><NavLink to='/joinUs' className='mx-2 md:mx-5  text-blue-600'><BsPersonFillAdd size={25} />Join Us</NavLink></li>
+        <li><NavLink to='/notifications' className='mx-2 md:mx-5  text-blue-600'><IoIosNotifications size={28} />Notifications</NavLink></li>
+        
     </>
     const handleLogout = () => {
         logout();

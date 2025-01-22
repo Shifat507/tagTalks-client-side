@@ -43,7 +43,7 @@ const Banner = () => {
 
                 <Link to='/createPost' className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaPenToSquare size={20} /> <span className='hidden md:block'>Post</span></Link>
 
-                <button className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><IoMdHelpCircleOutline size={20} /> <span className='hidden md:block'>Help</span></button>
+                <Link to='/help' className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><IoMdHelpCircleOutline size={20} /> <span className='hidden md:block'>Help</span></Link>
             </div>
         </div>
     );

@@ -22,7 +22,7 @@ const Membership = () => {
     console.log(member);
 
     return (
-        <div>
+        <div className='w-11/12 mx-auto'>
             {
                 member === 'Bronze' ? <div>
                     <Lottie animationData={premiumIcon} className='w-24'></Lottie>
