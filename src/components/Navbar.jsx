@@ -67,7 +67,7 @@ const Navbar = () => {
                     {
                         user ? <div className='flex items-center gap-4'>
                             <div className="">
-                                <details className="dropdown ">
+                                <details className="dropdown  dropdown-end">
                                     <summary className="cursor-pointer list-none">
                                         <div className="avatar">
                                             <div className="ring-primary ring-offset-base-100 w-8 rounded-full ring ring-offset-2">
@@ -75,7 +75,7 @@ const Navbar = () => {
                                             </div>
                                         </div>
                                     </summary>
-                                    <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] md:w-44 p-2 shadow ">
+                                    <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-48 md:w-52 p-2 shadow ">
                                         <li><button className='btn-disabled'>{user.displayName}</button></li>
                                         {/* dashboard */}
                                         <li><Link to='/dashboard'>Dashboard</Link></li>

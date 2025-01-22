@@ -75,14 +75,6 @@ const Register = () => {
                         //send user data to DB
                         axiosPublic.post('/users', userInfo)
                         navigate('/');
-                        // axiosPublic.post('/users', userInfo)
-                        //     .then(res => {
-                        //         if (res.data.insertedId) {
-                        //             reset();
-                        //             navigate('/');
-                        //         }
-                        //     })
-                        // console.log(res.user);
                     })
                     .catch(err => {
                         // console.log('Error: ', err);

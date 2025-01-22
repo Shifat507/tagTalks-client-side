@@ -15,6 +15,12 @@ import UserProfile from "../pages/userProfile";
 import MyPosts from "../pages/MyPosts";
 import PostDetails from "../pages/PostDetails";
 import Dashboard from "../pages/Dashboard";
+import AllUsers from "../pages/AllUsers";
+import DashboardInfo from "../components/dashboardInfo";
+import ManageUsers from "../components/manageUsers";
+import Announcement from "../components/Announcement";
+import Activities from "../components/Activities";
+import AdminProfile from "../components/AdminProfile";
 
 export const router = createBrowserRouter([
     {
@@ -57,18 +63,59 @@ export const router = createBrowserRouter([
                 path: '/userProfile',
                 element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
             },
-            {
-                path: '/myPosts',
-                element: <PrivateRoute><MyPosts></MyPosts></PrivateRoute>
-            },
+            // {
+            //     path: '/myPosts',
+            //     element: <PrivateRoute><MyPosts></MyPosts></PrivateRoute>
+            // },
             {
                 path: '/postDetails/:id',
                 element: <PostDetails></PostDetails>
             },
             {
-                path:'/dashboard',
-                element: <Dashboard></Dashboard>
+                path: '/allUsers',
+                element: <PrivateRoute><AllUsers></AllUsers></PrivateRoute>
             }
         ]
     },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: '',
+                element: <DashboardInfo></DashboardInfo>
+            },
+            {
+                path: "userProfile",
+                element: <UserProfile></UserProfile>
+            },
+            {
+                path: "createPost",
+                element: <CreatePost></CreatePost>
+            },
+            {
+                path: "myPosts",
+                element: <MyPosts></MyPosts>
+            },
+
+            // admin:
+            {
+                path: "adminProfile",
+                element: <AdminProfile></AdminProfile>
+            },
+            {
+                path: "manageUsers",
+                element: <ManageUsers></ManageUsers>
+            },
+            {
+                path: "announcement",
+                element: <Announcement></Announcement>
+            },
+            {
+                path: "activities",
+                element: <Activities></Activities>
+            },
+            
+        ]
+    }
 ]);
