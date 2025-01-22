@@ -21,6 +21,7 @@ import ManageUsers from "../components/manageUsers";
 import Announcement from "../components/Announcement";
 import Activities from "../components/Activities";
 import AdminProfile from "../components/AdminProfile";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -105,15 +106,15 @@ export const router = createBrowserRouter([
             // admin:
             {
                 path: "adminProfile",
-                element: <AdminProfile></AdminProfile>
+                element: <AdminRoute><AdminProfile></AdminProfile></AdminRoute>
             },
             {
                 path: "manageUsers",
-                element: <ManageUsers></ManageUsers>
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             },
             {
                 path: "announcement",
-                element: <Announcement></Announcement>
+                element: <AdminRoute><Announcement></Announcement></AdminRoute>
             },
             {
                 path: "activities",
