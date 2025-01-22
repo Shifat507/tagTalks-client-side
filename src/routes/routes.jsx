@@ -74,6 +74,10 @@ export const router = createBrowserRouter([
             {
                 path: '/allUsers',
                 element: <PrivateRoute><AllUsers></AllUsers></PrivateRoute>
+            },
+            {
+                path: "/announcement",
+                element: <Announcement></Announcement>
             }
         ]
     },
@@ -114,7 +118,7 @@ export const router = createBrowserRouter([
             {
                 path: "activities",
                 element: <Activities></Activities>
-            },
+            }
             
         ]
     }
