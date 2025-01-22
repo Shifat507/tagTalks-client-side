@@ -7,18 +7,22 @@ const Announcement = () => {
 
   const axiosSecure = useAxiosSecure();
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const announcement = {
-        title,
-        description
-    }
+      title,
+      description,
+      date: new Date().toISOString(), // Add the current date and time
+    };
     console.log(announcement);
-    const res = await axiosSecure.post('/announcement',announcement);
-    console.log(res.data);
-
-    setTitle("");
-    setDescription("");
+    try {
+      const res = await axiosSecure.post("/announcement", announcement);
+      console.log(res.data);
+      setTitle("");
+      setDescription("");
+    } catch (error) {
+      console.error("Error posting announcement:", error);
+    }
   };
 
   return (
