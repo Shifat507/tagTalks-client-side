@@ -1,8 +1,8 @@
 import React from 'react';
-import errorPage from '../../public/errorPage404/errorPage.JPG'
+import errorPage from '../../public/errorPage404/errorPage.png'
 const PageNotFound = () => {
     return (
-        <div>
+        <div className='flex justify-center items-center bg-blue-600'>
             <img src={errorPage} alt="" />
         </div>
     );
