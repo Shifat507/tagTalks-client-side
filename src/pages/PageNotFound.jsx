@@ -1,5 +1,5 @@
 import React from 'react';
-import errorPage from '../assets/pageNotFount/errorPage.JPG'
+import errorPage from '../../public/errorPage404/errorPage.JPG'
 const PageNotFound = () => {
     return (
         <div>
