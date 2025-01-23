@@ -65,7 +65,7 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             if(currentUser){
                 // get token and assign client side
-                const userInfo = {email : currentUser.email};
+                const userInfo = {email : currentUser?.email};
                 axiosPublic.post('/jwt', userInfo)
                 .then(res =>{
                     if(res.data.token){

@@ -23,11 +23,13 @@ import Activities from "../components/Activities";
 import AdminProfile from "../components/AdminProfile";
 import AdminRoute from "./AdminRoute";
 import Help from "../pages/Help";
+import PageNotFound from "../pages/PageNotFound";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement: <PageNotFound></PageNotFound>,
         children: [
             {
                 path: '/',
@@ -90,6 +92,7 @@ export const router = createBrowserRouter([
     {
         path: "dashboard",
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        errorElement: <PageNotFound></PageNotFound>,
         children: [
             {
                 path: '',

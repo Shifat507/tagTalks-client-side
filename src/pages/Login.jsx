@@ -6,7 +6,7 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 import { FaFacebook } from 'react-icons/fa';
 
 const Login = () => {
-    const user = useContext(AuthContext);
+    // const {user} = useContext(AuthContext);
     const axiosPublic = useAxiosPublic();
     const { signIn, googleSignIn, facebookSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
