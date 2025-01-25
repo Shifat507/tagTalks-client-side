@@ -1,14 +1,17 @@
 import React, { useContext, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { AuthContext } from "../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Announcement = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const navigate = useNavigate();
 
   const axiosSecure = useAxiosSecure();
-  const {user} = useContext(AuthContext);
-  
+  const { user } = useContext(AuthContext);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +25,20 @@ const Announcement = () => {
     // console.log(announcement);
     try {
       const res = await axiosSecure.post("/announcement", announcement);
-    //   console.log(res.data);
+      if (res.data) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Announcement set successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        
+      }
+      navigate('/notifications')
+
+
+      //   console.log(res.data);
       setTitle("");
       setDescription("");
     } catch (error) {
