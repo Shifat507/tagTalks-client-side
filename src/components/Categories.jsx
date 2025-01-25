@@ -25,7 +25,7 @@ const Categories = () => {
         <div>
             <h1 className='text-2xl font-semibold mb-3 flex items-center gap-3'><MdOutlineCategory size={30} /> Categories</h1>
             <select onChange={handleCategory} className="select select-primary w-full max-w-xs">
-                <option disabled selected>Select Any Tag</option>
+                <option disabled defaultValue="Select Any Tag"></option>
                 <option value='technology'>Technology</option>
                 <option value='science'>Science</option>
                 <option value='education'>Education</option>

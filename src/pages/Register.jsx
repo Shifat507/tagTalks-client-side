@@ -12,7 +12,7 @@ const Register = () => {
     const axiosPublic = useAxiosPublic();
     const { postCount } = usePostCount();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const { createUser, userUpdateData, googleSignIn, facebookSignIn } = useContext(AuthContext);
+    const { createUser, userUpdateData, googleSignIn, facebookSignIn , loading } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleGoogleSignin = () => {

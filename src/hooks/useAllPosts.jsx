@@ -7,8 +7,8 @@ const useAllPosts = () => {
     const axiosPublic = useAxiosPublic();
     const {user} = useContext(AuthContext);
     // user's all posts
-    const {data : posts=[], isPaused: loading, refetch} = useQuery({
-        queryKey: ['posts'],
+    const {data : posts=[], isPending: loading, refetch} = useQuery({
+        queryKey: ['posts', user?.email],
         queryFn: async()=>{
             const res = await axiosPublic.get(`/posts/user/${user?.email}`);
             return res.data;

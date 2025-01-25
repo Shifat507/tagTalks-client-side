@@ -1,8 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const DashboardInfo = () => {
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const [post, setPost] = useState(0);
+    const [comment, setComment] = useState(0);
+    const axiosSecure = useAxiosSecure();
+
+    useEffect(() => {
+        const adminData = async () => {
+
+            const postRes = await axiosSecure.get(`/post/user/count/${user.email}`);
+            setPost(postRes.data.count);
+
+            const commentRes = await axiosSecure.get(`/comment/user/count/${user.email}`);
+            setComment(commentRes.data.count);
+
+        };
+        if (user?.email) { // Ensure that user email is available
+            adminData();
+        }
+    }, [user?.email, axiosSecure]); // Only re-run if user email changes
     return (
         <div>
             <div className="">
@@ -26,8 +45,8 @@ const DashboardInfo = () => {
                                 <h3 className="text-lg font-semibold">{user?.displayName}</h3>
                                 <p className="text-gray-500 hidden md:block">{user?.email}</p>
                                 <div className="flex flex-col md:flex-row space-x-4 mt-2 text-sm">
-                                    <span>Posts: <strong>120</strong></span>
-                                    <span>Comments: <strong>450</strong></span>
+                                    <span>Posts: <strong>{post}</strong></span>
+                                    <span>Comments: <strong>{comment}</strong></span>
                                     <span>Followers: <strong>300</strong></span>
                                 </div>
                             </div>
@@ -60,7 +79,7 @@ const DashboardInfo = () => {
                     </div>
                 </section>
 
-                
+
             </div>
         </div>
     );

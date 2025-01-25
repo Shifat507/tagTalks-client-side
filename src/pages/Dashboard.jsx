@@ -7,6 +7,7 @@ import useAdmin from "../hooks/useAdmin";
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
     const [isAdmin] = useAdmin();
+    
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row">
             {/* Sidebar */}
@@ -64,7 +65,7 @@ const Dashboard = () => {
             <main className="flex-1 p-6">
                 <Outlet></Outlet>
 
-                {/* Trending Topics */}
+                {/* Trending Topics
                 <section>
                     <h3 className="text-xl font-semibold mb-4">Trending Topics</h3>
                     <div className="bg-white p-4 rounded-md shadow-md">
@@ -83,7 +84,7 @@ const Dashboard = () => {
                             </span>
                         </div>
                     </div>
-                </section>
+                </section> */}
             </main>
         </div>
     );
