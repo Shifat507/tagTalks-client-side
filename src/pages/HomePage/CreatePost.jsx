@@ -68,7 +68,7 @@ const CreatePost = () => {
     // console.log(postCount);
 
     // Conditional logic based on post count
-    if (postCount > 5 && userBadge === 'Bronze') {
+    if (postCount > 4 && userBadge === 'Bronze') {
         // console.log('Post korsy 5 ta ba tar beshi');
         Swal.fire({
             title: "Please Upgrade Your Plane",
