@@ -98,7 +98,7 @@ const AllPosts = ({ category }) => {
     };
 
     if (loading) {
-        return <span className="loading loading-spinner loading-md mx-auto my-24"></span>;
+        return <span className="loading loading-spinner loading-md flex justify-center my-24"></span>;
     }
 
     return (
