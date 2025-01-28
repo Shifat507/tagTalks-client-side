@@ -31,7 +31,9 @@ const Membership = () => {
         // Show a loading state while member data is being fetched
         return (
             <div className='w-11/12 mx-auto'>
-                <h1>Loading membership status...</h1>
+                <div className='flex justify-center mt-20'>
+                    <span className="loading loading-spinner loading-md"></span>
+                </div>
             </div>
         );
     }

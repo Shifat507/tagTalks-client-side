@@ -13,7 +13,9 @@ const Notifications = () => {
   });
 
   if (isLoading) {
-    return <p>Loading notifications...</p>;
+    return <div className='flex justify-center mt-20'>
+      <span className="loading loading-spinner loading-md"></span>
+    </div>;
   }
 
   if (isError) {
