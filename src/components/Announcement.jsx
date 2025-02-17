@@ -3,6 +3,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { AuthContext } from "../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { MdOutlineAnnouncement } from "react-icons/md";
 
 const Announcement = () => {
   const [title, setTitle] = useState("");
@@ -33,7 +34,7 @@ const Announcement = () => {
           showConfirmButton: false,
           timer: 1500
         });
-        
+
       }
       navigate('/notifications')
 
@@ -47,10 +48,13 @@ const Announcement = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">
-        Make an Announcement
-      </h2>
+    <div className="max-w-md md:max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-6 md:mt-12">
+      <div className="flex items-center gap-3 mb-4">
+        <MdOutlineAnnouncement size={25} />
+        <h2 className="text-lg md:text-2xl font-bold text-gray-800 mb-1 gap-3">
+          Make an Announcement
+        </h2>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
