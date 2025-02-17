@@ -7,12 +7,14 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 import { FcGoogle } from 'react-icons/fc';
 import usePostCount from '../hooks/usePostCount';
 import { FaFacebook } from 'react-icons/fa';
+import loginAnimation from '../assets/lotties/login-lotti.json'
+import Lottie from 'lottie-react';
 
 const Register = () => {
     const axiosPublic = useAxiosPublic();
     const { postCount } = usePostCount();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const { createUser, userUpdateData, googleSignIn, facebookSignIn , loading } = useContext(AuthContext);
+    const { createUser, userUpdateData, googleSignIn, facebookSignIn, loading } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleGoogleSignin = () => {
@@ -96,9 +98,13 @@ const Register = () => {
             </Helmet> */}
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse md:w-10/12 mx-auto">
-                    <div className="text-center lg:text-left">
-                        <h1 className="text-4xl font-bold">Signup now!</h1>
-                        <p className="py-6">
+                    <div className="text-center lg:text-left w-3/4 mx-auto">
+                        <div>
+                            <Lottie animationData={loginAnimation} className='w-48 md:w-80 mx-auto'></Lottie>
+                        </div>
+                        <h1 className="text-5xl font-bold text-[#788bff]">Signup now!</h1>
+                        <p className="py-6 text-justify">
+
                             Create an account to connect with others, share your insights, and dive into meaningful discussions. Be part of a vibrant community where your voice matters!
                         </p>
                     </div>
