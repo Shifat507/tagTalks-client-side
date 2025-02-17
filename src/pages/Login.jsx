@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import { FaFacebook } from 'react-icons/fa';
+import loginAnimation from '../assets/lotties/login-lotti.json'
+import Lottie from 'lottie-react';
 
 const Login = () => {
     // const {user} = useContext(AuthContext);
@@ -72,8 +74,13 @@ const Login = () => {
     return (
         <div>
             <div className="hero bg-base-200 min-h-screen">
+
                 <div className="hero-content flex-col lg:flex-row md:w-10/12 mx-auto">
+
                     <div className="text-center lg:text-left">
+                        <div>
+                            <Lottie animationData={loginAnimation} className='w-80 mx-auto'></Lottie>
+                        </div>
                         <h1 className="text-5xl font-bold mb-2">Login Now, </h1>
                         <span className='text-3xl font-bold'>to <span className='text-blue-600'>Join Us</span></span>
                         <p className="py-6">
