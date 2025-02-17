@@ -79,7 +79,7 @@ const Login = () => {
 
                     <div className="text-center lg:text-left">
                         <div>
-                            <Lottie animationData={loginAnimation} className='w-80 mx-auto'></Lottie>
+                            <Lottie animationData={loginAnimation} className='w-48 md:w-80 mx-auto'></Lottie>
                         </div>
                         <h1 className="text-5xl font-bold mb-2">Login Now, </h1>
                         <span className='text-3xl font-bold'>to <span className='text-blue-600'>Join Us</span></span>
