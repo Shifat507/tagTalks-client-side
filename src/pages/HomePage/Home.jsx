@@ -7,6 +7,7 @@ import useAdmin from '../../hooks/useAdmin';
 import evodiaPerfume from '../../assets/brandImg/evodia.jpg'
 import jhankerMBook from '../../assets/brandImg/Jhanker-M-book.jpg'
 import { Link } from 'react-router-dom';
+import { TfiAnnouncement } from 'react-icons/tfi';
 
 const Home = () => {
     const [category, setCategory] = useState('');
@@ -19,10 +20,11 @@ const Home = () => {
 
     return (
         <div className='mx-auto flex justify-between'>
-            {/* category */}
-            <aside className='w-72 px-4 md:block hidden'>
+            
+            <aside className='w-72 px-4 md:block hidden pt-5'>
+                {/* category */}
                 <div>
-                    <h1 className='text-2xl font-semibold mb-3 flex items-center gap-3'><MdOutlineCategory size={30} /> Categories</h1>
+                    <h1 className='text-lg font-semibold mb-3 flex items-center gap-3'><MdOutlineCategory size={30} /> Categories</h1>
                     <select onChange={handleCategory} className="select select-primary w-full max-w-xs">
                         <option disabled selected>Select Any Tag</option>
                         <option value='technology'>Technology</option>
@@ -34,6 +36,15 @@ const Home = () => {
                         <option value='lifestyle'>Lifestyle</option>
                     </select>
                 </div>
+
+                {/* Announcement */}
+                {/* <h1 className='text-lg font-semibold mb-3 flex items-center gap-3 mt-2'><TfiAnnouncement  size={30} /> Announcement</h1> */}
+                {
+                    isAdmin && <Link to='/announcement' className="text-lg font-semibold mb-3 flex items-center gap-3 mt-4 hover:bg-gray-200 px-4 py-2 rounded-md"><>
+                    
+                    <TfiAnnouncement  size={20} /> Announcement
+                    </></Link>
+                }
             </aside>
             <div className='w-full'>
                 <Banner></Banner>
@@ -41,9 +52,7 @@ const Home = () => {
                 <AllPosts category={category}></AllPosts>
             </div>
             <aside className='w-72 px-4  md:block hidden'>
-                {
-                    isAdmin && <Link to='/announcement' className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Announcement</Link>
-                }
+
                 <>
                     <h2 className='text-xl font-bold mt-8 mb-3'>Sponsored</h2>
                     <div className="max-w-xs mx-auto bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 mb-4">

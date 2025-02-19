@@ -29,9 +29,9 @@ const Dashboard = () => {
                                 <Link to='/dashboard/manageUsers' className="block py-2 px-4 hover:bg-indigo-100 rounded-md">
                                     Manage Users
                                 </Link>
-                                <Link to='/dashboard/activities' className="block py-2 px-4 hover:bg-indigo-100 rounded-md">
+                                {/* <Link to='/dashboard/activities' className="block py-2 px-4 hover:bg-indigo-100 rounded-md">
                                     Reported Comments or Activities
-                                </Link>
+                                </Link> */}
                                 <Link to='/dashboard/announcement' className="block py-2 px-4 hover:bg-indigo-100 rounded-md">
                                     Make Announcement
                                 </Link>
