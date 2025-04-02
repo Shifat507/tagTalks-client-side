@@ -26,7 +26,7 @@ const Navbar = () => {
         navigate('/');
     }
     return (
-        <div className='px-8'>
+        <div className=''>
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">

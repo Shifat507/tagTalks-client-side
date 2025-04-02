@@ -44,7 +44,7 @@ const ManageUsers = () => {
         });
     }
     return (
-        <div className='w-11/12 mx-auto mb-8 h-screen'>
+        <div className='w-9/12 mx-auto mb-8 h-screen md:ml-64'>
             <div className='flex justify-between items-center mb-8 mt-4'>
                 <h1 className='text-3xl font-semibold'>Manage users</h1>
                 <h1 className='text-lg font-semibold'>Total Users: {users.length}</h1>

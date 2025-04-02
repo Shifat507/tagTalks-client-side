@@ -28,7 +28,7 @@ const AdminProfile = ({ admin }) => {
     }, [user?.email, axiosSecure]); // Only re-run if user email changes
 
     return (
-        <div className="flex flex-col items-center p-6 bg-white shadow-lg rounded-lg max-w-md mx-auto border border-gray-200">
+        <div className="flex flex-col items-center p-6 bg-white shadow-lg rounded-lg md:ml-64 mx-auto border border-gray-200 ">
             {/* Title */}
             <h1 className="text-3xl font-bold text-primary mb-4">Admin</h1>
 

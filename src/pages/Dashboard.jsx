@@ -11,7 +11,7 @@ const Dashboard = () => {
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row">
             {/* Sidebar */}
-            <aside className="w-full md:w-64 bg-white shadow-md md:h-screen">
+            <aside className="w-full md:w-64 bg-white shadow-md md:h-screen md:fixed overflow-y-auto">
 
                 {
                     isAdmin ? <>
@@ -22,6 +22,9 @@ const Dashboard = () => {
                             <ul className="space-y-4">
                                 <Link to='/' className="block py-2 px-4 hover:bg-indigo-100 rounded-md">
                                     Home
+                                </Link>
+                                <Link to='/dashboard' className="block py-2 px-4 hover:bg-indigo-100 rounded-md">
+                                    Dashboard
                                 </Link>
                                 <Link to='/dashboard/adminProfile' className="block py-2 px-4 hover:bg-indigo-100 rounded-md">
                                     Admin Profile

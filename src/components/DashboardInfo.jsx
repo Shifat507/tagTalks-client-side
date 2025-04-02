@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import postIcon from '../assets/icons/post-Icon.png';
+import commentIcon from '../assets/icons/comments-icon.png' 
 
 const DashboardInfo = () => {
     const { user } = useContext(AuthContext);
@@ -24,7 +26,7 @@ const DashboardInfo = () => {
     }, [user?.email, axiosSecure]); // Only re-run if user email changes
     return (
         <div>
-            <div className="">
+            <div className="md:ml-64">
                 <header className="mb-6 flex items-center justify-between">
                     <h2 className="text-2xl font-semibold text-gray-700">Dashboard</h2>
                     {/* <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
@@ -33,7 +35,7 @@ const DashboardInfo = () => {
                 </header>
 
                 {/* User Profile */}
-                <section className="mb-8">
+                <section className="mb-10">
                     <div className="bg-white p-6 rounded-md shadow-md ">
                         <div className="flex items-center">
                             <img
@@ -45,11 +47,31 @@ const DashboardInfo = () => {
                                 <h3 className="text-lg font-semibold">{user?.displayName}</h3>
                                 <p className="text-gray-500 hidden md:block">{user?.email}</p>
                                 <div className="flex flex-col md:flex-row space-x-4 mt-2 text-sm">
-                                    <span>Posts: <strong>{post}</strong></span>
-                                    <span>Comments: <strong>{comment}</strong></span>
+                                    {/* <span>Posts: <strong>{post}</strong></span>
+                                    <span>Comments: <strong>{comment}</strong></span> */}
                                     <span>Followers: <strong>300</strong></span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </section>
+                
+                {/* Posts & Comments */}
+                <section className='flex justify-evenly items-center mb-10'>
+                    <div className="card bg-green-200 w-96">
+                        <div className="card-body">
+                            <h2 className="card-title"><span>
+                            <img src={postIcon} alt="" />
+                            </span>Posts</h2>
+                            <span className='font-bold'>Total Posts: {post}</span>
+                        </div>
+                    </div>
+                    <div className="card bg-yellow-100 w-96">
+                        <div className="card-body">
+                            <h2 className="card-title"><span>
+                            <img src={commentIcon} alt="" />
+                            </span>Comments</h2>
+                            <span className='font-bold'>Total Comments: {comment}</span>
                         </div>
                     </div>
                 </section>
