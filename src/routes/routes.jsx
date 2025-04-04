@@ -24,6 +24,7 @@ import AdminProfile from "../components/AdminProfile";
 import AdminRoute from "./AdminRoute";
 import Help from "../pages/Help";
 import PageNotFound from "../pages/PageNotFound";
+import CommunityGuidelines from "../pages/CommunityGuidelines";
 
 export const router = createBrowserRouter([
     {
@@ -86,6 +87,10 @@ export const router = createBrowserRouter([
             {
                 path: "/help",
                 element: <Help></Help>
+            },
+            {
+                path: "/CommunityGuidelines",
+                element: <CommunityGuidelines></CommunityGuidelines>
             }
         ]
     },
