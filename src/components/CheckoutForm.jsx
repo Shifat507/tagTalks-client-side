@@ -106,7 +106,7 @@ const CheckoutForm = () => {
 
     }
     return (
-        <div className='md:w-2/4 mt-8'>
+        <div className='md:w-full mt-8'>
             <form onSubmit={handleSubmit}>
                 <CardElement
                     options={{

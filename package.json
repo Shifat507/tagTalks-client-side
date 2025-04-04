@@ -17,6 +17,7 @@
     "@tanstack/react-router": "^1.97.0",
     "axios": "^1.7.9",
     "firebase": "^11.1.0",
+    "framer-motion": "^12.6.3",
     "localforage": "^1.10.0",
     "lottie-react": "^2.4.1",
     "match-sorter": "^8.0.0",
