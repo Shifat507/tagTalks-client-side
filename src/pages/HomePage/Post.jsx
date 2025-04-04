@@ -131,7 +131,7 @@ const Post = ({ post }) => {
                         <img
                             src={postImg}
                             alt="Post"
-                            className="w-full h-auto rounded-lg shadow-sm"
+                            className="w-full h-64 object-cover rounded-lg shadow-sm"
                         />
                     </div>
                 )}

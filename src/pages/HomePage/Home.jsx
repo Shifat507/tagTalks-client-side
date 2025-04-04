@@ -16,9 +16,9 @@ const Home = () => {
     const [isAdmin] = useAdmin();
 
     return (
-        <div className='flex min-h-screen'>
+        <div className='flex min-h-screen items-start mt-2'>
             {/* Left Sidebar - Categories */}
-            <aside className='w-72 px-4 md:block hidden sticky top-20 h-[calc(100vh-5rem)] pt-5'>
+            <aside className='w-72 px-4 md:block hidden sticky top-20 h-[calc(100vh-5rem)] '>
                 <div>
                     <h1 className='text-lg font-semibold mb-3 flex items-center gap-3'>
                         <MdOutlineCategory size={30} /> Categories
@@ -55,8 +55,8 @@ const Home = () => {
             </div>
 
             {/* Right Sidebar - Sponsored */}
-            <aside className='w-72 px-4 md:block hidden sticky top-20 h-[calc(100vh-5rem)] pt-5'>
-                <h2 className='text-xl font-bold mt-4 mb-3'>Sponsored</h2>
+            <aside className='w-72 px-4 md:block hidden sticky top-20 h-[calc(100vh-5rem)] '>
+                <h2 className='text-xl font-bold  mb-3'>Sponsored</h2>
                 <div className="max-w-xs mx-auto bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 mb-4">
                     <div className="relative">
                         <img
