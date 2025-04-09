@@ -1,12 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+
 import { AuthContext } from '../providers/AuthProvider';
 import logo from '../assets/logos/tagTalksLogo.png'
 import { FaRegNewspaper } from 'react-icons/fa';
 import { FaPenToSquare } from 'react-icons/fa6';
 import { IoMdHelpCircleOutline } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import useAxiosPublic from '../hooks/useAxiosPublic';
+import { useSearch } from '../context/SearchContext';
 const Banner = () => {
     const { user } = useContext(AuthContext);
+    const { search, setSearch } = useSearch();
+    console.log(search);
+    
+
     return (
         <div className=''>
             <div className='flex items-center gap-5'>
@@ -19,7 +26,7 @@ const Banner = () => {
                 </div>
                 <label className="input input-bordered flex items-center gap-2 w-full">
                     {
-                        user ? <input type="text" className="grow" placeholder={`What conversation are you looking for today, ${user?.displayName}?`} /> : <input type="text" className="grow" placeholder={`What conversation are you looking for today?`} />
+                        user ? <input onKeyUp={(e) => setSearch(e.target.value)} type="text" className="grow" placeholder={`What conversation are you looking for today, ${user?.displayName}?`} /> : <input type="text" className="grow" placeholder={`What conversation are you looking for today?`} />
                     }
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -36,9 +43,9 @@ const Banner = () => {
 
             <div className='grid grid-cols-3 px-4 py-1 gap-3 border-2 border-base-200 rounded-lg mt-2'>
                 <Link to='/popular-post' className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md">
-                <FaRegNewspaper size={20}/>
-                 <span className='hidden md:block'>Popular Contents</span>
-                 
+                    <FaRegNewspaper size={20} />
+                    <span className='hidden md:block'>Popular Contents</span>
+
                 </Link>
 
                 <Link to='/createPost' className="btn hover:bg-blue-300 btn-xs sm:btn-sm md:btn-md"><FaPenToSquare size={20} /> <span className='hidden md:block'>Post</span></Link>

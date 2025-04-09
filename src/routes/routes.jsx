@@ -25,6 +25,7 @@ import AdminRoute from "./AdminRoute";
 import Help from "../pages/Help";
 import PageNotFound from "../pages/PageNotFound";
 import CommunityGuidelines from "../pages/CommunityGuidelines";
+import { SearchProvider } from "../context/SearchContext";
 
 export const router = createBrowserRouter([
     {
@@ -34,7 +35,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <SearchProvider><Home></Home></SearchProvider>
             },
             {
                 path: '/login',

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner from '../../components/Banner';
+
 import AllPosts from './AllPosts';
 import { MdOutlineCategory } from 'react-icons/md';
 import useAdmin from '../../hooks/useAdmin';
@@ -7,13 +8,34 @@ import evodiaPerfume from '../../assets/brandImg/evodia.jpg';
 import jhankerMBook from '../../assets/brandImg/Jhanker-M-book.jpg';
 import { Link } from 'react-router-dom';
 import { TfiAnnouncement } from 'react-icons/tfi';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { useSearch } from '../../context/SearchContext';
 
 const Home = () => {
     const [category, setCategory] = useState('');
+    const { search } = useSearch();
     const handleCategory = (e) => {
         setCategory(e.target.value);
     }
+    console.log(search);
     const [isAdmin] = useAdmin();
+
+    // const axiosPublic = useAxiosPublic();
+
+    // useEffect(() => {
+    //         const fetchPosts = async () => {
+    //             try {
+    //                 const res = search
+    //                     ? await axiosPublic.get(`/searchPosts?search=${search}`) 
+    //                     : await axiosPublic.get('/postsCount');
+    //                 console.log(res.data); 
+    //             } catch (error) {
+    //                 console.error("Error fetching posts:", error);
+    //             }
+    //         }
+    //         fetchPosts()
+    
+    //     }, [search])
 
     return (
         <div className='flex min-h-screen items-start mt-2'>
@@ -51,7 +73,7 @@ const Home = () => {
             {/* Main Content */}
             <div className='flex-1 px-6 md:px-24'>
                 <Banner />
-                <AllPosts category={category} />
+                <AllPosts category={category} search={search}/>
             </div>
 
             {/* Right Sidebar - Sponsored */}
