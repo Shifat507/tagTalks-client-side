@@ -52,7 +52,6 @@ const CreatePost = () => {
 
     // Conditional logic based on post count
     if (postCount > 4 && userBadge === 'Bronze') {
-        // console.log('Post korsy 5 ta ba tar beshi');
         Swal.fire({
             title: "Please Upgrade Your Plane",
             text: "Your post limit is exceeds. Get unlimited post limit for lifetime at only $59",

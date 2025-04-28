@@ -6,6 +6,7 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 import usePost from '../../hooks/usePost';
 import { AuthContext } from '../../providers/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Post = ({ post }) => {
 
@@ -34,7 +35,14 @@ const Post = ({ post }) => {
     };
 
     const handleUpvote = async () => {
-        if (!user?.email) return alert('Please log in to upvote.');
+        if (!user?.email) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please login for up-vote.",
+            });
+            return;
+        }
         try {
             const res = await axiosPublic.patch(`/post/${_id}/upvote`, {
                 email: user.email,
@@ -50,7 +58,14 @@ const Post = ({ post }) => {
     };
 
     const handleDownvote = async () => {
-        if (!user?.email) return alert('Please log in to downvote.');
+        if (!user?.email) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please login for down-vote.",
+            });
+            return;
+        }
         try {
             const res = await axiosPublic.patch(`/post/${_id}/downvote`, {
                 email: user.email,
@@ -73,7 +88,14 @@ const Post = ({ post }) => {
     };
 
     const handleComment = async () => {
-        if (!user?.email) return alert('Please log in to upvote.');
+        if (!user?.email) {
+            await Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please login to comment.",
+            });
+            return;
+        }
         if (comment === '') {
             return;
         }
