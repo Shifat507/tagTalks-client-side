@@ -20,23 +20,6 @@ const Home = () => {
     console.log(search);
     const [isAdmin] = useAdmin();
 
-    // const axiosPublic = useAxiosPublic();
-
-    // useEffect(() => {
-    //         const fetchPosts = async () => {
-    //             try {
-    //                 const res = search
-    //                     ? await axiosPublic.get(`/searchPosts?search=${search}`) 
-    //                     : await axiosPublic.get('/postsCount');
-    //                 console.log(res.data); 
-    //             } catch (error) {
-    //                 console.error("Error fetching posts:", error);
-    //             }
-    //         }
-    //         fetchPosts()
-    
-    //     }, [search])
-
     return (
         <div className='flex min-h-screen items-start mt-2'>
             {/* Left Sidebar - Categories */}
@@ -53,7 +36,7 @@ const Home = () => {
                         <option value='technology'>Technology</option>
                         <option value='science'>Science</option>
                         <option value='education'>Education</option>
-                        <option value='politic'>Politic</option>
+                        <option value='politics'>Politics</option>
                         <option value='sports'>Sports</option>
                         <option value='health'>Health</option>
                         <option value='lifestyle'>Lifestyle</option>

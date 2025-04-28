@@ -43,7 +43,7 @@ const UserProfile = () => {
     }, [user, axiosPublic]);
 
     return (
-        <div className="bg-gray-100 min-h-screen py-10 px-5 md:px-20">
+        <div className="bg-gray-100 min-h-screen py-10 px-5 md:px-20 w-9/12 ml-64">
             <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">My Profile</h2>
 
             <div className="bg-white rounded-lg shadow-md p-6 md:p-10 mb-10 flex flex-col md:flex-row items-center md:items-start gap-8">

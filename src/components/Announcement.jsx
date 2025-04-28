@@ -48,7 +48,7 @@ const Announcement = () => {
   };
 
   return (
-    <div className="max-w-md md:max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-6 md:mt-12 ">
+    <div className="max-w-md md:max-w-3xl  bg-white shadow-lg rounded-lg p-6 mt-6 md:mt-12 md:ml-96 mx-auto">
       <div className="flex items-center gap-3 mb-4">
         <MdOutlineAnnouncement size={25} />
         <h2 className="text-lg md:text-2xl font-bold text-gray-800 mb-1 gap-3">

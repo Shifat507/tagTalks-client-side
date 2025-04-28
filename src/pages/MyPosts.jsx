@@ -14,7 +14,7 @@ const MyPosts = () => {
 
 
     return (
-        <div className='w-10/12 mx-auto'>
+        <div className='w-9/12 mx-auto md:ml-64'>
             <h1 className='text-4xl font-semibold my-2'>My Posts</h1>
             {
                 posts.map(post => <UserPost refetch={refetch} key={post._id} post={post}></UserPost>)

@@ -11,6 +11,8 @@ import usePost from '../../hooks/usePost';
 import Membership from '../Membership';
 import usePostCount from '../../hooks/usePostCount';
 import axios from 'axios';
+import { div } from 'framer-motion/client';
+import { Typewriter } from 'react-simple-typewriter';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -47,25 +49,6 @@ const CreatePost = () => {
         reset,
     } = useForm();
 
-    // Fetch post count using useEffect
-    // useEffect(() => {
-    //     const fetchPostCount = async () => {
-    //         try {
-    //             const response = await axiosPublic.get(`/post/user/count/${email}`);
-    //             const responseCount = response.data.count
-    //             setPostCount(responseCount); // Set post count data
-    //         } catch (error) {
-    //             console.error('Error fetching post count:', error);
-    //         } finally {
-    //             setLoading(false); // Stop loading after fetching
-    //         }
-    //     };
-
-    //     if (email) {
-    //         fetchPostCount();
-    //     }
-    // }, [email, axiosPublic]);
-    // console.log(postCount);
 
     // Conditional logic based on post count
     if (postCount > 4 && userBadge === 'Bronze') {
@@ -144,99 +127,107 @@ const CreatePost = () => {
         }
     };
 
-    // Loading state check
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
 
     return (
-        <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
-            <h2 className="text-2xl font-semibold text-center mb-6">Create a New Post</h2>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text font-medium flex items-center">
-                            <FaPenAlt className="mr-2" /> Post Title
-                        </span>
-                    </label>
-                    <input
-                        type="text"
-                        {...register('postTitle', { required: 'Post title is required' })}
-                        placeholder="Enter your post title"
-                        className="input input-bordered w-full"
+        <div className="">
+            <div className="max-w-md mt-10 p-6 bg-gradient-to-t from-purple-100 to-blue-200 shadow-xl rounded-lg mx-auto ">
+                <h2 className="text-2xl font-semibold text-center mb-6">
+                    <Typewriter
+                        words={['Create A New Post']}
+                        loop={5}
+                        cursor
+                        cursorStyle='_'
+                        typeSpeed={70}
+                        deleteSpeed={50}
+                        delaySpeed={1000}
                     />
-                    {errors.postTitle && (
-                        <span className="text-red-500 text-sm mt-1">{errors.postTitle.message}</span>
-                    )}
-                </div>
+                </h2>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text font-medium flex items-center">
+                                <FaPenAlt className="mr-2" /> Post Title
+                            </span>
+                        </label>
+                        <input
+                            type="text"
+                            {...register('postTitle', { required: 'Post title is required' })}
+                            placeholder="Enter your post title"
+                            className="input input-bordered w-full"
+                        />
+                        {errors.postTitle && (
+                            <span className="text-red-500 text-sm mt-1">{errors.postTitle.message}</span>
+                        )}
+                    </div>
 
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text font-medium flex items-center">
-                            <CgDetailsMore className="mr-2" /> Post Description
-                        </span>
-                    </label>
-                    <textarea
-                        {...register('postDescription', {
-                            required: 'Post description is required',
-                            minLength: {
-                                value: 30,
-                                message: 'Description must be at least 30 characters',
-                            },
-                        })}
-                        placeholder="Write your post description here"
-                        className="textarea textarea-bordered w-full"
-                    ></textarea>
-                    {errors.postDescription && (
-                        <span className="text-red-500 text-sm mt-1">
-                            {errors.postDescription.message}
-                        </span>
-                    )}
-                </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text font-medium flex items-center">
+                                <CgDetailsMore className="mr-2" /> Post Description
+                            </span>
+                        </label>
+                        <textarea
+                            {...register('postDescription', {
+                                required: 'Post description is required',
+                                minLength: {
+                                    value: 30,
+                                    message: 'Description must be at least 30 characters',
+                                },
+                            })}
+                            placeholder="Write your post description here"
+                            className="textarea textarea-bordered w-full"
+                        ></textarea>
+                        {errors.postDescription && (
+                            <span className="text-red-500 text-sm mt-1">
+                                {errors.postDescription.message}
+                            </span>
+                        )}
+                    </div>
 
-                <div className="form-control w-full">
-                    <label className="label">
-                        <span className="label-text font-medium flex items-center">
-                            <FaTags className="mr-2" /> Tags
-                        </span>
-                    </label>
-                    <select
-                        {...register('tag', { required: 'Please select a tag' })}
-                        className="select select-bordered w-full"
-                    >
-                        <option value="">Select a tag</option>
-                        <option value="technology">Technology</option>
-                        <option value="science">Science</option>
-                        <option value="education">Education</option>
-                        <option value="sports">Sports</option>
-                        <option value="politics">Politics</option>
-                        <option value="lifestyle">Lifestyle</option>
-                        <option value="health">Health</option>
-                    </select>
-                    {errors.tag && (
-                        <span className="text-red-500 text-sm mt-1">{errors.tag.message}</span>
-                    )}
-                </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text font-medium flex items-center">
+                                <FaTags className="mr-2" /> Tags
+                            </span>
+                        </label>
+                        <select
+                            {...register('tag', { required: 'Please select a tag' })}
+                            className="select select-bordered w-full"
+                        >
+                            <option value="">Select a tag</option>
+                            <option value="technology">Technology</option>
+                            <option value="science">Science</option>
+                            <option value="education">Education</option>
+                            <option value="sports">Sports</option>
+                            <option value="politics">Politics</option>
+                            <option value="lifestyle">Lifestyle</option>
+                            <option value="health">Health</option>
+                        </select>
+                        {errors.tag && (
+                            <span className="text-red-500 text-sm mt-1">{errors.tag.message}</span>
+                        )}
+                    </div>
 
-                <div>
-                    <label className="label">
-                        <span className="label-text font-medium flex items-center">
-                            <IoMdPhotos className="mr-2" /> Choose Photo
-                        </span>
-                    </label>
-                    <input
-                        {...register('postImg')}
-                        type="file"
-                        className="file-input w-full max-w-xs"
-                    />
-                </div>
-
-                <div className="form-control mt-4">
-                    <button type="submit" className="btn btn-primary w-full">
-                        Create Post
-                    </button>
-                </div>
-            </form>
+                    <div>
+                        <label className="label">
+                            <span className="label-text font-medium flex items-center">
+                                <IoMdPhotos className="mr-2" /> Choose Photo
+                            </span>
+                        </label>
+                        <input
+                            {...register('postImg')}
+                            type="file"
+                            className="file-input w-full max-w-xs"
+                        />
+                    </div>
+                    <div className='divider'></div>
+                    <div className="form-control mt-4">
+                        <button type="submit" className="btn btn-primary w-full font-bold">
+                            Upload Post
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

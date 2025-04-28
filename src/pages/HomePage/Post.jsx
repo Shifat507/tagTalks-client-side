@@ -73,6 +73,7 @@ const Post = ({ post }) => {
     };
 
     const handleComment = async () => {
+        if (!user?.email) return alert('Please log in to upvote.');
         if (comment === '') {
             return;
         }
@@ -162,6 +163,7 @@ const Post = ({ post }) => {
                         </button>
 
                     </div>
+                    {/* comment */}
                     <div className="flex items-center gap-4">
                         <button
                             onClick={() => openModal(_id)}
@@ -171,9 +173,10 @@ const Post = ({ post }) => {
                             <span className="hidden sm:block">{commentCount} Comment</span>
                             <span className="sm:hidden">{commentCount}</span>
                         </button>
+                        {/* Share Button */}
                         <div className='hover:text-blue-500'>
                             <FacebookShareButton
-                                url={`https://yourwebsite.com/post/${_id}`} // Replace with your post URL
+                                url={`https://tagtalks-a59ee.web.app/${_id}`} // Replace with your post URL
                                 quote={postTitle}
                                 className="flex items-center gap-1 text-blue-600 hover:bg-blue-100 px-3 py-1 rounded-lg"
                             >
@@ -185,7 +188,7 @@ const Post = ({ post }) => {
                     </div>
                 </div>
 
-                {/* Unique Modal */}
+                {/* Unique Modal -- Comment */}
                 <dialog id={`modal_${_id}`} className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box">
                         <h3 className="text-lg mb-3">

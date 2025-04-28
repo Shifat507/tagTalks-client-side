@@ -65,7 +65,7 @@ const Dashboard = () => {
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 p-6">
+            <main className="flex-1  p-6">
                 <Outlet></Outlet>
 
                 {/* Trending Topics
